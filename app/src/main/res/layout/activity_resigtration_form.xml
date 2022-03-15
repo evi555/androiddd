@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/black"
+    android:layout_height="match_parent"
+    tools:context=".Resigtration_form" >
+
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Registration form"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/lnr1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_shape"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@+id/textview1"
+        android:layout_marginTop="100dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:background="@drawable/image_shape"
+            android:layout_height="40dp"
+            android:padding="12dp"
+            app:srcCompat="@drawable/email1" />
+
+        <EditText
+            android:padding="10dp"
+            android:background="@color/white"
+            android:id="@+id/editTextTextEmailAddress4"
+            android:layout_width="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress"
+            android:hint="Enter email"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr2"
+            android:layout_below="@+id/lnr1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_shape"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:background="@drawable/image_shape"
+                android:layout_height="40dp"
+                android:padding="12dp"
+                app:srcCompat="@drawable/key1"
+                />
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginRight="5dp"
+                android:inputType="textEmailAddress"
+                android:hint="Enter password"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr3"
+            android:layout_below="@+id/lnr2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_shape"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:background="@drawable/image_shape"
+                android:layout_height="40dp"
+                android:padding="12dp"
+                app:srcCompat="@drawable/key1"
+                />
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginRight="5dp"
+                android:inputType="textEmailAddress"
+                android:hint="Verify password"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr4"
+            android:layout_below="@+id/lnr3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_shape"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:background="@drawable/image_shape"
+                android:layout_height="40dp"
+                android:padding="12dp"
+                app:srcCompat="@drawable/user"
+                />
+
+            <EditText
+                android:id="@+id/editname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginRight="5dp"
+                android:inputType="text"
+                android:hint=" Enter Name"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr5"
+            android:layout_below="@+id/lnr4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_shape"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:background="@drawable/image_shape"
+                android:layout_height="40dp"
+                android:padding="12dp"
+                app:srcCompat="@drawable/call"
+                />
+
+            <EditText
+                android:id="@+id/phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginRight="5dp"
+                android:inputType="number"
+                android:hint=" Enter Phone number"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lnr5"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:text="I own a security system"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioButton"
+            android:layout_weight="1"
+            android:text="I don't own a security system"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioButton2"
+            android:layout_marginLeft="20dp"
+            android:text="Back to login"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioButton2"
+            android:text="Register"
+            android:textAllCaps="false"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>

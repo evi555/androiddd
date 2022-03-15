@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="200dp"/>
+
+            <LinearLayout
+                android:id="@+id/lnr1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_shape"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/textview1"
+                android:layout_marginTop="100dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="50dp"
+                    android:background="@drawable/image_shape"
+                    android:layout_height="40dp"
+                    android:padding="12dp"
+                    app:srcCompat="@drawable/email1" />
+
+                <EditText
+                    android:padding="10dp"
+                    android:background="@color/white"
+                    android:id="@+id/editTextTextEmailAddress4"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textEmailAddress"
+                    android:hint="Enter email"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr2"
+            android:layout_below="@+id/lnr1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/edittext_shape"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:background="@drawable/image_shape"
+                android:layout_height="40dp"
+                android:padding="12dp"
+                app:srcCompat="@drawable/key1"
+                />
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginRight="5dp"
+                android:inputType="textEmailAddress"
+                android:hint="Enter password"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+    <TextView
+        android:id="@+id/newuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lnr2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:text="New User"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lnr2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/orange"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+</RelativeLayout>
