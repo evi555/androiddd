@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/black"
     android:layout_height="match_parent"
-    tools:context=".contact"
+    tools:context=".ContactActivity"
     android:gravity="center_horizontal">
 
     <RelativeLayout
@@ -46,13 +46,13 @@
                 android:id="@id/textview3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_shape"
                 android:hint="Contact Name"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="20dp"/>
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/textview4"

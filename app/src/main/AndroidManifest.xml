@@ -10,16 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SharedSecuritySystem">
         <activity
-            android:name=".homeactivity"
+            android:name=".UpdateContactActivity"
             android:exported="false" />
         <activity
-            android:name=".contact"
-            android:exported="true" />
-        <activity
-            android:name=".Resigtration_form"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".ContactListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ContactActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

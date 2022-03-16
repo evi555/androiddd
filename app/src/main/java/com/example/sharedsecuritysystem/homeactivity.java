@@ -7,12 +7,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class homeactivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     ImageView imageView;
     DrawerLayout drawerLayout;
@@ -21,7 +20,7 @@ public class homeactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homeactivity);
+        setContentView(R.layout.activity_home);
 
         imageView = findViewById(R.id.menu);
         drawerLayout=findViewById(R.id.drawer1);
@@ -42,7 +41,7 @@ public class homeactivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(homeactivity.this, contact.class);
+                Intent intent = new Intent(HomeActivity.this, ContactActivity.class);
                 startActivity(intent);
             }
         });
