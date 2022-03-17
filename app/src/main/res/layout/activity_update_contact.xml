@@ -9,36 +9,36 @@
     android:background="@color/black"
     android:gravity="center">
 
-    <TextView
-        android:id="@+id/textviewName"
+    <EditText
+        android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/edittext_shape"
-        android:text="Name"
+        android:hint="Name"
         android:padding="10dp"
         android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textviewEmail"
+    <EditText
+        android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/edittext_shape"
-        android:text="Email"
+        android:hint="Email"
         android:padding="10dp"
         android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textviewPhone"
+    <EditText
+        android:id="@+id/editTextPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/edittext_shape"
-        android:text="Phone"
+        android:hint="Phone"
         android:padding="10dp"
         android:textColor="@color/black" />
 

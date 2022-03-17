@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:layout_height="100dp"
+    android:padding="2dp"
+    android:layout_margin="5dp"
     android:orientation="vertical"
-    android:background="@color/black" >
+    android:background="@drawable/layout_shape" >
 
     <TextView
         android:id="@+id/textviewName"
@@ -12,31 +14,45 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_shape"
         android:text="Name"
-        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:padding="2dp"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textviewEmail"
+        android:layout_below="@id/textviewName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edittext_shape"
         android:text="Email"
-        android:padding="10dp"
+        android:textSize="15sp"
+        android:padding="2dp"
         android:textColor="@color/black" />
 
     <TextView
+        android:layout_below="@id/textviewEmail"
         android:id="@+id/textviewPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edittext_shape"
         android:text="Phone"
-        android:padding="10dp"
+        android:padding="2dp"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black" />
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_baseline_delete_forever_24"
+        app:tint="@color/red" />
+
+</RelativeLayout>

@@ -25,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/menu"
-                android:clickable="true"/>
+                android:backgroundTint="@color/white"
+                android:clickable="true" />
             <TextView
                 android:id="@+id/textview1"
                 android:layout_width="wrap_content"
@@ -103,7 +104,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="10dp"
                 android:backgroundTint="@color/orange"
-                android:src="@drawable/plus"
+                android:src="@drawable/ic_baseline_control_point_24"
                 android:layout_marginBottom="20dp"/>
 
         </RelativeLayout>
@@ -117,6 +118,7 @@
         app:itemTextColor="@color/skin"
         app:itemTextAppearance="@style/menuview"
         android:layout_gravity="start"
+        app:itemIconTint="@color/white"
         app:menu="@menu/app_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

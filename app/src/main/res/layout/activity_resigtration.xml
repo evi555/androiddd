@@ -163,17 +163,17 @@
                 android:padding="10dp"/>
         </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lnr5"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:text="I own a security system"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"/>
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lnr5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/white"
+        android:text="I own a security system"
+        android:textColor="@color/white" />
 
         <RadioButton
             android:id="@+id/radioButton2"
