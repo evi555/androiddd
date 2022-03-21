@@ -2,12 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="220dp"
     android:padding="2dp"
     android:layout_margin="5dp"
-    android:orientation="vertical"
-    android:background="@drawable/layout_shape" >
+    android:orientation="vertical" >
 
+    <RelativeLayout
+        android:id="@+id/relativelayout2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/layout_shape"
+        android:backgroundTint="@color/orange"
+        android:layout_marginTop="5dp">
     <TextView
         android:id="@+id/textviewName"
         android:layout_width="match_parent"
@@ -22,26 +28,83 @@
 
     <TextView
         android:id="@+id/textviewEmail"
-        android:layout_below="@id/textviewName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textviewName"
         android:layout_marginHorizontal="20dp"
-        android:text="Email"
-        android:textSize="15sp"
         android:padding="2dp"
-        android:textColor="@color/black" />
+        android:text="Email"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textviewPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textviewEmail"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:padding="2dp"
+            android:text="Phone"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_baseline_delete_forever_24"
+        app:tint="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativelayout3"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/relativelayout2"
+        android:background="@drawable/layout_shape"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/textviewName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textviewEmail2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textviewName2"
+            android:layout_marginHorizontal="20dp"
+            android:padding="2dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
     <TextView
-        android:layout_below="@id/textviewEmail"
-        android:id="@+id/textviewPhone"
+        android:id="@+id/textviewPhone2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textviewEmail2"
         android:layout_marginHorizontal="20dp"
-        android:text="Phone"
-        android:padding="2dp"
-        android:textSize="15sp"
         android:layout_marginBottom="10dp"
-        android:textColor="@color/black" />
+        android:padding="2dp"
+        android:text="Phone"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -54,5 +117,6 @@
         android:layout_marginBottom="10dp"
         android:src="@drawable/ic_baseline_delete_forever_24"
         app:tint="@color/red" />
+    </RelativeLayout>
 
 </RelativeLayout>

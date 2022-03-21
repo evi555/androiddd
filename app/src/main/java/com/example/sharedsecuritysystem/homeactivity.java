@@ -78,6 +78,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             }
                         }).setNegativeButton("No", null).show();
                 break;
+            case R.id.nav_connected_to:
+                startActivity(new Intent(this,ConnectedToActivity.class));
+                break;
         }
         return true;
     }

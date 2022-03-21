@@ -10,16 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SharedSecuritySystem">
         <activity
+            android:name=".ConnectedToActivity"
+            android:exported="true" />
+        <activity
             android:name=".UpdateContactActivity"
             android:exported="false" />
         <activity
             android:name=".ContactListActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ContactActivity"
             android:exported="true" />
@@ -29,7 +30,6 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

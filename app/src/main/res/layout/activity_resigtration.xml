@@ -11,12 +11,12 @@
         android:id="@+id/textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
         android:text="Registration form"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/lnr1"
@@ -196,15 +196,16 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/radioButton2"
-            android:text="Register"
-            android:textAllCaps="false"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/btn_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radioButton2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/orange"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
 
     </RelativeLayout>

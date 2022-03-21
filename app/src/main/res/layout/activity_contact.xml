@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="100dp"
-                android:text="Add contact:"
+                android:text="Add contact"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textview5"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="100dp"
                 android:backgroundTint="@color/orange"
                 android:text="Create contact"
                 android:textAllCaps="false"

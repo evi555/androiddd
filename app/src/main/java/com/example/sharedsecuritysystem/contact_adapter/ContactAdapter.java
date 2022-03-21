@@ -37,6 +37,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         holder.textViewName.setText(list.get(position).getName());
         holder.textViewPhone.setText(list.get(position).getPhone());
         holder.textViewEmail.setText(list.get(position).getEmail());
+//        holder.textViewName2.setText(list.get(position).getName());
+//        holder.textViewEmail2.setText(list.get(position).getEmail());
+//        holder.textViewPhone2.setText(list.get(position).getPhone());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,13 +58,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-         TextView textViewName, textViewPhone, textViewEmail;
+         TextView textViewName, textViewPhone, textViewEmail, textViewName2, textViewPhone2, textViewEmail2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textviewName);
             textViewEmail = itemView.findViewById(R.id.textviewEmail);
             textViewPhone = itemView.findViewById(R.id.textviewPhone);
+//            textViewName2 = itemView.findViewById(R.id.textviewName2);
+//            textViewEmail2 = itemView.findViewById(R.id.textviewEmail2);
+//            textViewPhone2 = itemView.findViewById(R.id.textviewPhone2);
         }
     }
 }

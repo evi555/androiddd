@@ -11,12 +11,12 @@
         android:id="@+id/textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
         android:text="Sign In"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginTop="200dp"/>
+        android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/lnr1"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lnr2"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="40dp"
         android:text="New User"
         android:textColor="@color/blue"
@@ -96,8 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/lnr2"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/orange"
         android:text="Login"
         android:textAllCaps="false"
