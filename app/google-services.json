@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "852026008022",
+    "project_id": "sharedsecuritysystem",
+    "storage_bucket": "sharedsecuritysystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852026008022:android:4d14ab2de778f137388477",
+        "android_client_info": {
+          "package_name": "com.example.sharedsecuritysystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852026008022-thq5l0dr04dh7vonh2cgcur00cs9vj8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjNifJqOsJn6VWaGIYIM2tD5hNu3kt190"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852026008022-thq5l0dr04dh7vonh2cgcur00cs9vj8k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
