@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class RegistrationActivity extends AppCompatActivity {
     TextView textView;
     Button button;
-    EditText inputEmail, inputPassword, inputConfirmPassword;
+    EditText inputEmail, inputPassword, inputConfirmPassword, inputName, inputPhone;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
 
@@ -36,6 +36,8 @@ public class RegistrationActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.editTextTextEmailAddress4);
         inputPassword=findViewById(R.id.editTextTextPassword);
         inputConfirmPassword=findViewById(R.id.editTextTextConfirmPassword);
+        inputName=findViewById(R.id.editTextName);
+        inputPhone=findViewById(R.id.editTextPhone);
         progressDialog= new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
@@ -66,6 +68,8 @@ public class RegistrationActivity extends AppCompatActivity {
         String email=inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
         String confirmPassword = inputConfirmPassword.getText().toString();
+        String name=inputName.getText().toString();
+        String phone=inputPhone.getText().toString();
 
         if(!email.matches(emailPattern))
         {
@@ -76,6 +80,12 @@ public class RegistrationActivity extends AppCompatActivity {
         }else if(!password.equals(confirmPassword))
         {
             inputConfirmPassword.setError("Password not matched");
+        }else if(name.isEmpty() || name.length()<3)
+        {
+            inputName.setError("Enter proper name");
+        }else if(!name.equals(name))
+        {
+            inputPhone.setError("Phone number is not correct");
         }else
         {
             progressDialog.setMessage("Please wait while registration...");
@@ -102,7 +112,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void sendUserToNextActivity(){
-        Intent intent = new Intent(RegistrationActivity.this, TestActivity.class);
+        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

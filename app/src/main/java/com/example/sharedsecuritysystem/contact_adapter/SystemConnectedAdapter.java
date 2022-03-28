@@ -20,6 +20,12 @@ public class SystemConnectedAdapter extends RecyclerView.Adapter<SystemConnected
         this.context = context;
         this.list = list;
     }
+//      ArrayList<SystemConnectedResponse> list2;
+//  Context context2;
+//    public SystemConnectedAdapter(ArrayList<SystemConnectedResponse> list2, Context context2) {
+//      this.context = context2;
+//      this.list = list2;
+//  }
 
     @NonNull
     @Override
