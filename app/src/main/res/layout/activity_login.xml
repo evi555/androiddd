@@ -5,10 +5,10 @@
         android:layout_width="match_parent"
         android:background="@color/black"
         android:layout_height="match_parent"
-        tools:context=".LoginActivity" >
+        tools:context=".ui.LoginActivity" >
 
     <TextView
-        android:id="@+id/textview1"
+        android:id="@+id/textViewLoginSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -19,17 +19,17 @@
         android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/lnr1"
+                android:id="@+id/lnrLogin1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_shape"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal"
-                android:layout_below="@+id/textview1"
+                android:layout_below="@+id/textViewLoginSignIn"
                 android:layout_marginTop="100dp">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageViewLoginEmail"
                     android:layout_width="50dp"
                     android:background="@drawable/image_shape"
                     android:layout_height="40dp"
@@ -39,7 +39,7 @@
                 <EditText
                     android:padding="10dp"
                     android:background="@color/white"
-                    android:id="@+id/textEmailLogin"
+                    android:id="@+id/editTextLoginEmail"
                     android:layout_width="match_parent"
                     android:layout_marginRight="5dp"
                     android:layout_height="match_parent"
@@ -49,8 +49,8 @@
             </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnr2"
-            android:layout_below="@+id/lnr1"
+            android:id="@+id/lnrLogin2"
+            android:layout_below="@+id/lnrLogin1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -59,7 +59,7 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewLoginPassword"
                 android:layout_width="50dp"
                 android:background="@drawable/image_shape"
                 android:layout_height="40dp"
@@ -68,7 +68,7 @@
                 />
 
             <EditText
-                android:id="@+id/textPasswordLogin"
+                android:id="@+id/editTextLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -79,10 +79,10 @@
         </LinearLayout>
 
     <TextView
-        android:id="@+id/newuser"
+        android:id="@+id/textViewLoginNewUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lnr2"
+        android:layout_below="@+id/lnrLogin2"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="40dp"
         android:text="New User"
@@ -94,7 +94,7 @@
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lnr2"
+        android:layout_below="@id/lnrLogin2"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"

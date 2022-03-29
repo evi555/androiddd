@@ -1,4 +1,4 @@
-package com.example.sharedsecuritysystem;
+package com.example.sharedsecuritysystem.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.sharedsecuritysystem.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,10 +29,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        imageView = findViewById(R.id.menu);
+        imageView = findViewById(R.id.imageViewHomeHamburger);
         drawerLayout=findViewById(R.id.drawer1);
         floatingActionButton = findViewById(R.id.btn_floating);
-        navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.navViewHome);
         navigationView.setNavigationItemSelectedListener(this);
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +80,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         }).setNegativeButton("No", null).show();
                 break;
             case R.id.nav_connected_to:
-                startActivity(new Intent(this,ConnectedToActivity.class));
+                startActivity(new Intent(this, ConnectedToActivity.class));
                 break;
         }
         return true;

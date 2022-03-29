@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="menuview">
+    <style name="menuView">
         <item name="android:textSize">16dp</item>
 
     </style>

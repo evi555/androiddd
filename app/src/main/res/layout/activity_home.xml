@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
+    tools:context=".ui.HomeActivity"
     android:id="@+id/drawer1">
 
     <RelativeLayout
@@ -13,14 +13,14 @@
         android:background="@color/black">
 
         <RelativeLayout
-            android:id="@+id/relativelayout2"
+            android:id="@+id/rlHome1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
             android:layout_marginLeft="10dp">
 
             <ImageView
-                android:id="@+id/menu"
+                android:id="@+id/imageViewHomeHamburger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -29,7 +29,7 @@
                 android:clickable="true" />
 
             <TextView
-                android:id="@+id/textview1"
+                android:id="@+id/textViewHomeUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
@@ -39,10 +39,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textview2"
+                android:id="@+id/textViewHomeDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textview1"
+                android:layout_below="@+id/textViewHomeUser"
                 android:layout_marginTop="20dp"
                 android:text=" Your Details"
                 android:textColor="@color/white"
@@ -52,16 +52,16 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/relativelayout3"
+            android:id="@+id/rlHome2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/relativelayout2"
+            android:layout_below="@id/rlHome1"
             android:layout_marginTop="50dp"
             android:background="@color/black"
             android:gravity="center_horizontal">
 
             <EditText
-                android:id="@id/textview3"
+                android:id="@+id/textViewHomeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -72,10 +72,10 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@id/textview4"
+                android:id="@+id/textViewHomeEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textview3"
+                android:layout_below="@id/textViewHomeName"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/edittext_shape"
                 android:hint="Email"
@@ -85,10 +85,10 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@id/textview5"
+                android:id="@+id/textViewHomePhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textview4"
+                android:layout_below="@id/textViewHomeEmail"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/edittext_shape"
                 android:hint="Phone number"
@@ -112,12 +112,12 @@
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/navViewHome"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/dark"
         app:itemTextColor="@color/skin"
-        app:itemTextAppearance="@style/menuview"
+        app:itemTextAppearance="@style/menuView"
         android:layout_gravity="start"
         app:itemIconTint="@color/white"
         app:menu="@menu/app_menu" />

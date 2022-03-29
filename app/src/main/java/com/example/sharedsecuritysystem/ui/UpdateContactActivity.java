@@ -1,14 +1,11 @@
-package com.example.sharedsecuritysystem;
+package com.example.sharedsecuritysystem.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.example.sharedsecuritysystem.contact_adapter.ContactAdapter;
+import com.example.sharedsecuritysystem.R;
 
 public class UpdateContactActivity extends AppCompatActivity {
 
@@ -20,9 +17,9 @@ public class UpdateContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_contact);
 
-        editTextName = findViewById(R.id.editTextName);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPhone = findViewById(R.id.editTextPhone);
+        editTextName = findViewById(R.id.editTextUpdateName);
+        editTextEmail = findViewById(R.id.editTextUpdateEmail);
+        editTextPhone = findViewById(R.id.editTextUpdatePhone);
 
         Intent intent = getIntent();
         name = intent.getStringExtra("Name");

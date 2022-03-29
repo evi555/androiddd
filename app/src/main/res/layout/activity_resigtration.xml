@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:background="@color/black"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity" >
+    tools:context=".ui.RegistrationActivity" >
 
     <TextView
-        android:id="@+id/textview1"
+        android:id="@+id/textViewRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -19,16 +19,16 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/lnr1"
+        android:id="@+id/lnrRegistration1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_shape"
         android:layout_marginHorizontal="20dp"
-        android:layout_below="@+id/textview1"
+        android:layout_below="@+id/textViewRegistration"
         android:layout_marginTop="100dp">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewRegistrationEmail"
             android:layout_width="50dp"
             android:background="@drawable/image_shape"
             android:layout_height="40dp"
@@ -38,7 +38,7 @@
         <EditText
             android:padding="10dp"
             android:background="@color/white"
-            android:id="@+id/editTextTextEmailAddress4"
+            android:id="@+id/editTextRegistrationEmail"
             android:layout_width="match_parent"
             android:layout_marginRight="5dp"
             android:layout_height="match_parent"
@@ -48,8 +48,8 @@
     </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnr2"
-            android:layout_below="@+id/lnr1"
+            android:id="@+id/lnrRegistration2"
+            android:layout_below="@+id/lnrRegistration1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_shape"
@@ -57,7 +57,7 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewRegistrationPassword"
                 android:layout_width="50dp"
                 android:background="@drawable/image_shape"
                 android:layout_height="40dp"
@@ -66,7 +66,7 @@
                 />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editTextRegistrationPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -77,8 +77,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnr3"
-            android:layout_below="@+id/lnr2"
+            android:id="@+id/lnrRegistration3"
+            android:layout_below="@+id/lnrRegistration2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_shape"
@@ -86,7 +86,7 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageViewRegistrationConfirmPassword"
                 android:layout_width="50dp"
                 android:background="@drawable/image_shape"
                 android:layout_height="40dp"
@@ -95,7 +95,7 @@
                 />
 
             <EditText
-                android:id="@+id/editTextTextConfirmPassword"
+                android:id="@+id/editTextRegistrationConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -106,8 +106,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnr4"
-            android:layout_below="@+id/lnr3"
+            android:id="@+id/lnrRegistration4"
+            android:layout_below="@+id/lnrRegistration3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_shape"
@@ -115,7 +115,7 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imageViewRegistrationUser"
                 android:layout_width="50dp"
                 android:background="@drawable/image_shape"
                 android:layout_height="40dp"
@@ -124,7 +124,7 @@
                 />
 
             <EditText
-                android:id="@+id/editTextName"
+                android:id="@+id/editTextRegistrationUser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -135,8 +135,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnr5"
-            android:layout_below="@+id/lnr4"
+            android:id="@+id/lnrRegistration5"
+            android:layout_below="@+id/lnrRegistration4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_shape"
@@ -144,7 +144,7 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageViewRegistrationPhone"
                 android:layout_width="50dp"
                 android:background="@drawable/image_shape"
                 android:layout_height="40dp"
@@ -153,7 +153,7 @@
                 />
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/editTextRegistrationPhone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -164,10 +164,10 @@
         </LinearLayout>
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/radioButtonRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lnr5"
+        android:layout_below="@+id/lnrRegistration5"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
@@ -176,20 +176,20 @@
         android:textColor="@color/white" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButtonRegistration2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radioButton"
+            android:layout_below="@+id/radioButtonRegistration"
             android:layout_weight="1"
             android:text="I don't own a security system"
             android:textColor="@color/white"
             android:layout_marginLeft="20dp"/>
 
         <TextView
-            android:id="@+id/textview3"
+            android:id="@+id/textViewRegistrationLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radioButton2"
+            android:layout_below="@+id/radioButtonRegistration2"
             android:layout_marginLeft="20dp"
             android:text="Back to login"
             android:textColor="@color/blue"
@@ -200,7 +200,7 @@
         android:id="@+id/btn_registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/radioButton2"
+        android:layout_below="@id/radioButtonRegistration2"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="25dp"
         android:backgroundTint="@color/orange"

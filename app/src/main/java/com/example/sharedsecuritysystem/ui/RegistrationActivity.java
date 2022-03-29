@@ -1,4 +1,4 @@
-package com.example.sharedsecuritysystem;
+package com.example.sharedsecuritysystem.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sharedsecuritysystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,16 +34,16 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resigtration);
 
-        inputEmail = findViewById(R.id.editTextTextEmailAddress4);
-        inputPassword=findViewById(R.id.editTextTextPassword);
-        inputConfirmPassword=findViewById(R.id.editTextTextConfirmPassword);
-        inputName=findViewById(R.id.editTextName);
-        inputPhone=findViewById(R.id.editTextPhone);
+        inputEmail = findViewById(R.id.editTextRegistrationEmail);
+        inputPassword=findViewById(R.id.editTextRegistrationPassword);
+        inputConfirmPassword=findViewById(R.id.editTextRegistrationConfirmPassword);
+        inputName=findViewById(R.id.editTextRegistrationUser);
+        inputPhone=findViewById(R.id.editTextRegistrationPhone);
         progressDialog= new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
 
-        textView = findViewById(R.id.textview3);
+        textView = findViewById(R.id.textViewRegistrationLogin);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

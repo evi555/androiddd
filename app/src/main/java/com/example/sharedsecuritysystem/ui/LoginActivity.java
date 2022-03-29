@@ -1,4 +1,4 @@
-package com.example.sharedsecuritysystem;
+package com.example.sharedsecuritysystem.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sharedsecuritysystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView textView;
     Button button;
-    EditText inputEmail, inputPassword, inputConfirmPassword;
+    EditText inputEmail, inputPassword;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
 
@@ -34,13 +35,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        inputEmail = findViewById(R.id.textEmailLogin);
-        inputPassword=findViewById(R.id.textPasswordLogin);
+        inputEmail = findViewById(R.id.editTextLoginEmail);
+        inputPassword=findViewById(R.id.editTextLoginPassword);
         progressDialog= new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
 
-        textView = findViewById(R.id.newuser);
+        textView = findViewById(R.id.textViewLoginNewUser);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,14 +1,11 @@
-package com.example.sharedsecuritysystem;
+package com.example.sharedsecuritysystem.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-
-import com.example.sharedsecuritysystem.contact_adapter.ContactAdapter;
-import com.example.sharedsecuritysystem.contact_adapter.ContactResponse;
-import com.example.sharedsecuritysystem.contact_adapter.SystemConnectedAdapter;
-import com.example.sharedsecuritysystem.contact_adapter.SystemConnectedResponse;
+import com.example.sharedsecuritysystem.Adapter.SystemConnectedAdapter;
+import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.Response.SystemConnectedResponse;
 
 import java.util.ArrayList;
 
@@ -36,7 +33,7 @@ public class ConnectedToActivity extends AppCompatActivity {
         list.add(new SystemConnectedResponse("Ishu", "ishu@gmail.com", "8219475641"));
         list.add(new SystemConnectedResponse("Biku", "biku@gmail.com", "7877041562"));
         list.add(new SystemConnectedResponse("Suresh", "suresh@gmail.com", "8728044760"));
-        recyclerView = findViewById(R.id.recyclersystem);
+        recyclerView = findViewById(R.id.recyclerSystemConnected);
         systemConnectedAdapter = new SystemConnectedAdapter(list,this);
         recyclerView.setAdapter(systemConnectedAdapter);
     }

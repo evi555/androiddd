@@ -1,15 +1,17 @@
-package com.example.sharedsecuritysystem.contact_adapter;
+package com.example.sharedsecuritysystem.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.Response.SystemConnectedResponse;
 
 import java.util.ArrayList;
 
@@ -20,12 +22,6 @@ public class SystemConnectedAdapter extends RecyclerView.Adapter<SystemConnected
         this.context = context;
         this.list = list;
     }
-//      ArrayList<SystemConnectedResponse> list2;
-//  Context context2;
-//    public SystemConnectedAdapter(ArrayList<SystemConnectedResponse> list2, Context context2) {
-//      this.context = context2;
-//      this.list = list2;
-//  }
 
     @NonNull
     @Override
@@ -40,6 +36,11 @@ public class SystemConnectedAdapter extends RecyclerView.Adapter<SystemConnected
     holder.textViewName.setText(list.get(position).getName());
     holder.textViewEmail.setText(list.get(position).getEmail());
     holder.textViewphone.setText(list.get(position).getPhone());
+
+    if (position%2==0)
+        holder.relativeLayout.getBackground().setTint(context.getResources().getColor(R.color.orange));
+    else
+        holder.relativeLayout.getBackground().setTint(context.getResources().getColor(R.color.white));
     }
 
     @Override
@@ -49,12 +50,14 @@ public class SystemConnectedAdapter extends RecyclerView.Adapter<SystemConnected
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName, textViewEmail, textViewphone;
+        RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.textviewsystemName);
-            textViewEmail = itemView.findViewById(R.id.textviewsystemEmail);
-            textViewphone = itemView.findViewById(R.id.textviewsystemPhone);
+            textViewName = itemView.findViewById(R.id.textViewSystemConnectedName);
+            textViewEmail = itemView.findViewById(R.id.textViewSystemConnectedEmail);
+            textViewphone = itemView.findViewById(R.id.textViewSystemConnectedPhone);
+            relativeLayout = itemView.findViewById(R.id.rlSystemConnected);
         }
     }
 }

@@ -1,12 +1,11 @@
-package com.example.sharedsecuritysystem.contact_adapter;
+package com.example.sharedsecuritysystem.Response;
 
-public class SystemConnectedResponse {
-
+public class ContactResponse {
     private String name;
     private String email;
     private String phone;
 
-    public SystemConnectedResponse(String name, String email, String phone){
+    public ContactResponse(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;

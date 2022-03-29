@@ -1,4 +1,4 @@
-package com.example.sharedsecuritysystem;
+package com.example.sharedsecuritysystem.ui;
 
 public class Contact {
 

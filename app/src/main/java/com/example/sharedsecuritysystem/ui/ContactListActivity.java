@@ -1,11 +1,12 @@
-package com.example.sharedsecuritysystem;
+package com.example.sharedsecuritysystem.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import com.example.sharedsecuritysystem.contact_adapter.ContactAdapter;
-import com.example.sharedsecuritysystem.contact_adapter.ContactResponse;
+import com.example.sharedsecuritysystem.Adapter.ContactAdapter;
+import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.Response.ContactResponse;
 
 import java.util.ArrayList;
 
@@ -32,26 +33,9 @@ public class ContactListActivity extends AppCompatActivity {
         list.add(new ContactResponse("Ishu", "ishu@gmail.com", "8219475641"));
         list.add(new ContactResponse("Biku", "biku@gmail.com", "7877041562"));
         list.add(new ContactResponse("Suresh", "suresh@gmail.com", "8728044760"));
-        recyclerView = findViewById(R.id.recycler1);
+        recyclerView = findViewById(R.id.recyclerContactList);
         contactAdapter = new ContactAdapter(list,this);
         recyclerView.setAdapter(contactAdapter);
-
-//        list2 = new ArrayList<ContactResponseNew>();
-//        list2.add(new ContactResponseNew("Yash Pal", "yash@gmail.com", "901014745"));
-//        list2.add(new ContactResponseNew("Anku", "anku@gmail.com", "901014741"));
-//        list2.add(new ContactResponseNew("Vivek", "vivek@gmail.com", "98014745"));
-//        list2.add(new ContactResponseNew("Ram", "ram@gmail.com", "941014745"));
-//        list2.add(new ContactResponseNew("Shyam", "shyam@gmail.com", "9718004745"));
-//        list2.add(new ContactResponseNew("Hari", "hari@gmail.com", "8728044760"));
-//        list2.add(new ContactResponseNew("Kapil", "kapil@gmail.com", "8428444761"));
-//        list2.add(new ContactResponseNew("Sunil", "sunil@gmail.com", "9654782410"));
-//        list2.add(new ContactResponseNew("Manoj", "manoj@gmail.com", "9988455661"));
-//        list2.add(new ContactResponseNew("Ishu", "ishu@gmail.com", "8219475641"));
-//        list2.add(new ContactResponseNew("Biku", "biku@gmail.com", "7877041562"));
-//        list2.add(new ContactResponseNew("Suresh", "suresh@gmail.com", "8728044760"));
-//        recyclerView = findViewById(R.id.recycler1);
-//        contactAdapter2 = new ContactAdapter(list,this);
-//        recyclerView.setAdapter(contactAdapter2);
 
     }
 }
