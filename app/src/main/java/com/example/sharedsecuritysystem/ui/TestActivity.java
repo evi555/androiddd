@@ -4,13 +4,17 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.databinding.ActivityTestBinding;
 
 public class TestActivity extends AppCompatActivity {
-
+    ActivityTestBinding testBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        testBinding=ActivityTestBinding.inflate(getLayoutInflater());
+        setContentView(testBinding.getRoot());
+
+        testBinding.t1.setText("Iam changed now");
 
     }
 }

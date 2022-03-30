@@ -7,12 +7,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,9 +17,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView textView;
+    ActivityLoginBinding loginbinding;
+
+    /*TextView textView;
     Button button;
-    EditText inputEmail, inputPassword;
+    EditText inputEmail, inputPassword;*/
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
 
@@ -33,43 +31,63 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        inputEmail = findViewById(R.id.editTextLoginEmail);
-        inputPassword=findViewById(R.id.editTextLoginPassword);
+        loginbinding=ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(loginbinding.getRoot());
+
+        /*inputEmail = findViewById(R.id.editTextLoginEmail);
+        inputPassword=findViewById(R.id.editTextLoginPassword);*/
         progressDialog= new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
 
-        textView = findViewById(R.id.textViewLoginNewUser);
-        textView.setOnClickListener(new View.OnClickListener() {
+        //textView = findViewById(R.id.textViewLoginNewUser);
+
+        loginbinding.textViewLoginNewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
+            }
+        });
+
+        /*textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
-        button = findViewById(R.id.btn_login);
-        button.setOnClickListener(new View.OnClickListener() {
+        //button = findViewById(R.id.btn_login);
+
+        loginbinding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 perForLogin();
-//                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//                startActivity(intent);
-//                finishAffinity();
             }
         });
+
+        /*button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                perForLogin();
+                *//*Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finishAffinity();*//*
+            }
+        });*/
     }
 
     private void perForLogin() {
-        String email = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
+        //String email = inputEmail.getText().toString();
+        String email = loginbinding.editTextLoginEmail.getText().toString();
+        //String password = inputPassword.getText().toString();
+        String password = loginbinding.editTextLoginPassword.getText().toString();
 
         if (!email.matches(emailPattern)) {
-            inputEmail.setError("Enter Correct Email");
+            loginbinding.editTextLoginEmail.setError("Enter Correct Email");
         } else if (password.isEmpty() || password.length() < 6) {
-            inputPassword.setError("Enter proper password");
+            loginbinding.editTextLoginPassword.setError("Enter proper password");
         } else {
             progressDialog.setMessage("Please wait while Login...");
             progressDialog.setTitle("Login");

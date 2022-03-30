@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable-v24/image_shape.xml" value="0.1145" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable/edittext_shape.xml" value="0.1145" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable/layout_shape.xml" value="0.1145" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_connected_to.xml" value="0.19166666666666668" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_contact.xml" value="0.171875" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_contact_list.xml" value="0.25" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_home.xml" value="0.19166666666666668" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_login.xml" value="0.171875" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_resigtration.xml" value="0.171875" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_test.xml" value="0.19166666666666668" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_update_contact.xml" value="0.171875" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/contact_item.xml" value="0.2" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/system_connected_list.xml" value="0.17760416666666667" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/menu/app_menu.xml" value="0.19166666666666668" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

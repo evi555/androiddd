@@ -17,6 +17,7 @@
             android:name=".ui.TestActivity"
             android:exported="true" >
 
+
         </activity>
         <activity
             android:name=".ui.ConnectedToActivity"

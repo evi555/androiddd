@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.databinding.ActivityResigtrationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,9 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationActivity extends AppCompatActivity {
-    TextView textView;
+    ActivityResigtrationBinding resigtrationBinding;
+
+    /*TextView textView;
     Button button;
-    EditText inputEmail, inputPassword, inputConfirmPassword, inputName, inputPhone;
+    EditText inputEmail, inputPassword, inputConfirmPassword, inputName, inputPhone;*/
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
 
@@ -32,18 +35,19 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resigtration);
+        resigtrationBinding=ActivityResigtrationBinding.inflate(getLayoutInflater());
+        setContentView(resigtrationBinding.getRoot());
 
-        inputEmail = findViewById(R.id.editTextRegistrationEmail);
+        /*inputEmail = findViewById(R.id.editTextRegistrationEmail);
         inputPassword=findViewById(R.id.editTextRegistrationPassword);
         inputConfirmPassword=findViewById(R.id.editTextRegistrationConfirmPassword);
         inputName=findViewById(R.id.editTextRegistrationUser);
-        inputPhone=findViewById(R.id.editTextRegistrationPhone);
+        inputPhone=findViewById(R.id.editTextRegistrationPhone);*/
         progressDialog= new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
 
-        textView = findViewById(R.id.textViewRegistrationLogin);
+        /*textView = findViewById(R.id.textViewRegistrationLogin);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,42 +55,54 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(intent);
                 finishAffinity();
             }
+        });*/
+        resigtrationBinding.textViewRegistrationLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            }
         });
 
-        button = findViewById(R.id.btn_registration);
+        /*button = findViewById(R.id.btn_registration);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PerforAuth();
-//                Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
-//                startActivity(intent);
-//                finishAffinity();
+                *//*Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finishAffinity();*//*
+            }
+        });*/
+        resigtrationBinding.btnRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PerforAuth();
             }
         });
     }
 
     private void PerforAuth() {
-        String email=inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
-        String confirmPassword = inputConfirmPassword.getText().toString();
-        String name=inputName.getText().toString();
-        String phone=inputPhone.getText().toString();
+        String email=resigtrationBinding.editTextRegistrationEmail.getText().toString();
+        String password = resigtrationBinding.editTextRegistrationPassword.getText().toString();
+        String confirmPassword = resigtrationBinding.editTextRegistrationConfirmPassword.getText().toString();
+        String name= resigtrationBinding.editTextRegistrationUser.getText().toString();
+        String phone= resigtrationBinding.editTextRegistrationPhone.getText().toString();
 
         if(!email.matches(emailPattern))
         {
-            inputEmail.setError("Enter Correct Email");
+            resigtrationBinding.editTextRegistrationEmail.setError("Enter Correct Email");
         }else if(password.isEmpty() || password.length()<6)
         {
-            inputPassword.setError("Enter proper password");
+            resigtrationBinding.editTextRegistrationPassword.setError("Enter proper password");
         }else if(!password.equals(confirmPassword))
         {
-            inputConfirmPassword.setError("Password not matched");
+            resigtrationBinding.editTextRegistrationConfirmPassword.setError("Password not matched");
         }else if(name.isEmpty() || name.length()<3)
         {
-            inputName.setError("Enter proper name");
-        }else if(!name.equals(name))
+            resigtrationBinding.editTextRegistrationUser.setError("Enter proper name");
+        }else if(phone.isEmpty() || phone.length()<10)
         {
-            inputPhone.setError("Phone number is not correct");
+            resigtrationBinding.editTextRegistrationPhone.setError("Phone number is not correct");
         }else
         {
             progressDialog.setMessage("Please wait while registration...");
