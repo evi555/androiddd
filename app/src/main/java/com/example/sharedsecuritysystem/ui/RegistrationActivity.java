@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class RegistrationActivity extends AppCompatActivity {
         resigtrationBinding=ActivityResigtrationBinding.inflate(getLayoutInflater());
         setContentView(resigtrationBinding.getRoot());
 
+        //checkButton();
+
         /*inputEmail = findViewById(R.id.editTextRegistrationEmail);
         inputPassword=findViewById(R.id.editTextRegistrationPassword);
         inputConfirmPassword=findViewById(R.id.editTextRegistrationConfirmPassword);
@@ -56,6 +59,30 @@ public class RegistrationActivity extends AppCompatActivity {
                 finishAffinity();
             }
         });*/
+
+        resigtrationBinding.lnrRegistration6.setVisibility(View.GONE);
+
+        resigtrationBinding.radioButtonRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (resigtrationBinding.radioButtonRegistration.isChecked())
+                    resigtrationBinding.lnrRegistration6.setVisibility(View.VISIBLE);
+
+                else
+                    resigtrationBinding.lnrRegistration6.setVisibility(View.GONE);
+            }
+        });
+
+        resigtrationBinding.radioButtonRegistration2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (resigtrationBinding.radioButtonRegistration2.isChecked())
+                    resigtrationBinding.lnrRegistration6.setVisibility(View.GONE);
+                else
+                    resigtrationBinding.lnrRegistration6.setVisibility(View.VISIBLE);
+            }
+        });
+
         resigtrationBinding.textViewRegistrationLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,4 +160,9 @@ public class RegistrationActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+    /*public void checkButton(){
+        int radioID = resigtrationBinding.radioGroupRegistration.getCheckedRadioButtonId();
+    }*/
+
 }

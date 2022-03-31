@@ -163,11 +163,45 @@
                 android:padding="10dp"/>
         </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/lnrRegistration6"
+        android:layout_below="@+id/lnrRegistration5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_shape"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/imageViewRegistrationId"
+            android:layout_width="50dp"
+            android:background="@drawable/image_shape"
+            android:layout_height="40dp"
+            android:padding="12dp"
+            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24"
+            />
+
+        <EditText
+            android:id="@+id/editTextRegistrationId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_marginRight="5dp"
+            android:inputType="number"
+            android:hint=" Enter System ID"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroupRegistration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lnrRegistration6">
+
     <RadioButton
         android:id="@+id/radioButtonRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lnrRegistration5"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
@@ -179,17 +213,17 @@
             android:id="@+id/radioButtonRegistration2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radioButtonRegistration"
             android:layout_weight="1"
             android:text="I don't own a security system"
             android:textColor="@color/white"
             android:layout_marginLeft="20dp"/>
+    </RadioGroup>
 
         <TextView
             android:id="@+id/textViewRegistrationLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radioButtonRegistration2"
+            android:layout_below="@+id/radioGroupRegistration"
             android:layout_marginLeft="20dp"
             android:text="Back to login"
             android:textColor="@color/blue"
@@ -200,7 +234,7 @@
         android:id="@+id/btn_registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/radioButtonRegistration2"
+        android:layout_below="@id/radioGroupRegistration"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="25dp"
         android:backgroundTint="@color/orange"

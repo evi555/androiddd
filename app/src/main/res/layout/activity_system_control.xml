@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SystemControlActivity"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:id="@+id/rlSystemControlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="System Control"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSystemControl2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+            android:id="@+id/textViewSystemControlSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:text="System State On/off"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <Switch
+            android:id="@+id/btn_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textViewSystemControlSwitch"
+            android:padding="10dp"
+            tools:ignore="UnknownId,UseSwitchCompatOrMaterialXml" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSystemControl3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlSystemControl3"
+        tools:ignore="NotSibling"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="Camera"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSystemControl4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_border">
+
+        <ImageView
+            android:id="@+id/cameraimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_baseline_photo_camera_24" />
+
+    </RelativeLayout>
+</LinearLayout>

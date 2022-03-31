@@ -4,50 +4,48 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-
 import com.example.sharedsecuritysystem.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.sharedsecuritysystem.databinding.ActivityHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    ActivityHomeBinding homeBinding;
 
-    ImageView imageView;
+    /*ImageView imageView;
     DrawerLayout drawerLayout;
     FloatingActionButton floatingActionButton;
-    NavigationView navigationView;
+    NavigationView navigationView;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        homeBinding=ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(homeBinding.getRoot());
 
-        imageView = findViewById(R.id.imageViewHomeHamburger);
+        /*imageView = findViewById(R.id.imageViewHomeHamburger);
         drawerLayout=findViewById(R.id.drawer1);
         floatingActionButton = findViewById(R.id.btn_floating);
-        navigationView = findViewById(R.id.navViewHome);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView = findViewById(R.id.navViewHome);*/
+        homeBinding.navViewHome.setNavigationItemSelectedListener(this);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        homeBinding.imageViewHomeHamburger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-                    drawerLayout.closeDrawer(GravityCompat.START);
+                if(homeBinding.drawerHome.isDrawerOpen(GravityCompat.START)){
+                    homeBinding.drawerHome.closeDrawer(GravityCompat.START);
                 }
                 else{
-                    drawerLayout.openDrawer(GravityCompat.START);
+                    homeBinding.drawerHome.openDrawer(GravityCompat.START);
                 }
             }
         });
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        homeBinding.btnFloating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ContactActivity.class);
@@ -55,6 +53,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -81,6 +80,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_connected_to:
                 startActivity(new Intent(this, ConnectedToActivity.class));
+                break;
+            case R.id.nav_history:
+                startActivity(new Intent(this, HistoryActivity.class));
+                break;
+            case R.id.nav_system_control:
+                startActivity(new Intent(this, SystemControlActivity.class));
                 break;
         }
         return true;
