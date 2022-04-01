@@ -7,239 +7,260 @@
     android:layout_height="match_parent"
     tools:context=".ui.RegistrationActivity" >
 
-    <TextView
-        android:id="@+id/textViewRegistration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:text="Registration form"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:id="@+id/lnrRegistration1"
+    <RelativeLayout
+        android:id="@+id/rl_Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edittext_shape"
-        android:layout_marginHorizontal="20dp"
-        android:layout_below="@+id/textViewRegistration"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="50dp">
 
-        <ImageView
-            android:id="@+id/imageViewRegistrationEmail"
-            android:layout_width="50dp"
-            android:background="@drawable/image_shape"
-            android:layout_height="40dp"
-            android:padding="12dp"
-            app:srcCompat="@drawable/email1" />
+        <TextView
+            android:id="@+id/textViewRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/registration_form"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-        <EditText
-            android:padding="10dp"
-            android:background="@color/white"
-            android:id="@+id/editTextRegistrationEmail"
-            android:layout_width="match_parent"
-            android:layout_marginRight="5dp"
-            android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
-            android:hint="Enter email"/>
 
-    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_Center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_Header"
+        android:layout_marginTop="50dp">
 
         <LinearLayout
-            android:id="@+id/lnrRegistration2"
-            android:layout_below="@+id/lnrRegistration1"
+            android:id="@+id/ll_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edittext_shape"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp">
+            android:background="@drawable/edittext_shape">
 
             <ImageView
-                android:id="@+id/imageViewRegistrationPassword"
+                android:id="@+id/img_email"
                 android:layout_width="50dp"
-                android:background="@drawable/image_shape"
                 android:layout_height="40dp"
+                android:background="@drawable/image_shape"
                 android:padding="12dp"
-                app:srcCompat="@drawable/key1"
-                />
+                app:srcCompat="@drawable/email1" />
 
             <EditText
-                android:id="@+id/editTextRegistrationPassword"
+                android:id="@+id/edt_txt_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
                 android:background="@color/white"
+                android:hint="@string/enter_email"
+                android:inputType="textEmailAddress"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pswrd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_email"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape">
+
+            <ImageView
+                android:id="@+id/img_pswrd"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/image_shape"
+                android:padding="12dp"
+                app:srcCompat="@drawable/key1" />
+
+            <EditText
+                android:id="@+id/edt_txt_pswrd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
-                android:inputType="textPassword"
+                android:background="@color/white"
                 android:hint="Enter password"
-                android:padding="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnrRegistration3"
-            android:layout_below="@+id/lnrRegistration2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_shape"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:id="@+id/imageViewRegistrationConfirmPassword"
-                android:layout_width="50dp"
-                android:background="@drawable/image_shape"
-                android:layout_height="40dp"
-                android:padding="12dp"
-                app:srcCompat="@drawable/key1"
-                />
-
-            <EditText
-                android:id="@+id/editTextRegistrationConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:layout_marginRight="5dp"
                 android:inputType="textPassword"
-                android:hint="Verify password"
-                android:padding="10dp"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnrRegistration4"
-            android:layout_below="@+id/lnrRegistration3"
+            android:id="@+id/ll_cnfrm_pswrd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edittext_shape"
+            android:layout_below="@+id/ll_pswrd"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape">
 
             <ImageView
-                android:id="@+id/imageViewRegistrationUser"
+                android:id="@+id/img_cnfrm_pswrd"
                 android:layout_width="50dp"
-                android:background="@drawable/image_shape"
                 android:layout_height="40dp"
+                android:background="@drawable/image_shape"
                 android:padding="12dp"
-                app:srcCompat="@drawable/user"
-                />
+                app:srcCompat="@drawable/key1" />
 
             <EditText
-                android:id="@+id/editTextRegistrationUser"
+                android:id="@+id/edt_txt_cnfrm_pswrd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
                 android:background="@color/white"
-                android:layout_marginRight="5dp"
+                android:hint="@string/verify_password"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_usr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_cnfrm_pswrd"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape">
+
+            <ImageView
+                android:id="@+id/img_usr"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/image_shape"
+                android:padding="12dp"
+                app:srcCompat="@drawable/user" />
+
+            <EditText
+                android:id="@+id/edt_txt_usr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:background="@color/white"
+                android:hint="@string/enter_name"
                 android:inputType="text"
-                android:hint=" Enter Name"
-                android:padding="10dp"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnrRegistration5"
-            android:layout_below="@+id/lnrRegistration4"
+            android:id="@+id/ll_phn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edittext_shape"
+            android:layout_below="@+id/ll_usr"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape">
 
             <ImageView
-                android:id="@+id/imageViewRegistrationPhone"
+                android:id="@+id/img_phn"
                 android:layout_width="50dp"
-                android:background="@drawable/image_shape"
                 android:layout_height="40dp"
+                android:background="@drawable/image_shape"
                 android:padding="12dp"
-                app:srcCompat="@drawable/call"
-                />
+                app:srcCompat="@drawable/call" />
 
             <EditText
-                android:id="@+id/editTextRegistrationPhone"
+                android:id="@+id/edt_txt_phn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
                 android:background="@color/white"
-                android:layout_marginRight="5dp"
+                android:hint="@string/enter_phone_number"
                 android:inputType="number"
-                android:hint=" Enter Phone number"
-                android:padding="10dp"/>
+                android:padding="10dp" />
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/lnrRegistration6"
-        android:layout_below="@+id/lnrRegistration5"
+        <LinearLayout
+            android:id="@+id/ll_sys_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_phn"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape">
+
+            <ImageView
+                android:id="@+id/img_sys_id"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/image_shape"
+                android:padding="12dp"
+                app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
+
+            <EditText
+                android:id="@+id/edt_txt_sys_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:background="@color/white"
+                android:hint="@string/enter_system_id"
+                android:inputType="number"
+                android:padding="10dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_rd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edittext_shape"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:id="@+id/imageViewRegistrationId"
-            android:layout_width="50dp"
-            android:background="@drawable/image_shape"
-            android:layout_height="40dp"
-            android:padding="12dp"
-            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24"
-            />
-
-        <EditText
-            android:id="@+id/editTextRegistrationId"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:layout_marginRight="5dp"
-            android:inputType="number"
-            android:hint=" Enter System ID"
-            android:padding="10dp"/>
-    </LinearLayout>
+        android:layout_below="@+id/rl_Center">
 
     <RadioGroup
-        android:id="@+id/radioGroupRegistration"
+        android:id="@+id/rd_grp_reg"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lnrRegistration6">
+        android:layout_height="wrap_content" >
 
     <RadioButton
-        android:id="@+id/radioButtonRegistration"
+        android:id="@+id/rd_btn_own"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:backgroundTint="@color/white"
-        android:text="I own a security system"
+        android:text="@string/i_own_a_security_system"
         android:textColor="@color/white" />
 
         <RadioButton
-            android:id="@+id/radioButtonRegistration2"
+            android:id="@+id/rd_btn_dnt_own"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="I don't own a security system"
+            android:text="@string/i_don_t_own_a_security_system"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginStart="20dp"/>
     </RadioGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_Bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_rd">
 
         <TextView
-            android:id="@+id/textViewRegistrationLogin"
+            android:id="@+id/txt_bck_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radioGroupRegistration"
-            android:layout_marginLeft="20dp"
-            android:text="Back to login"
+            android:layout_marginStart="20dp"
+            android:text="@string/back_to_login"
             android:textColor="@color/blue"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
 
     <Button
-        android:id="@+id/btn_registration"
+        android:id="@+id/btn_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/radioGroupRegistration"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="25dp"
         android:backgroundTint="@color/orange"
-        android:text="Register"
+        android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@color/black" />
-
     </RelativeLayout>
+
+
+</RelativeLayout>

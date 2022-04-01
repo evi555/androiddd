@@ -8,94 +8,99 @@
     android:id="@+id/drawerHome">
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black">
 
         <RelativeLayout
-            android:id="@+id/rlHome1"
+            android:id="@+id/rl_Header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:layout_marginLeft="10dp">
+            android:layout_marginStart="10dp" >
 
             <ImageView
-                android:id="@+id/imageViewHomeHamburger"
+                android:id="@+id/img_hmburgr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/menu"
                 android:backgroundTint="@color/white"
-                android:clickable="true" />
+                android:clickable="true"
+                android:focusable="true" />
 
             <TextView
-                android:id="@+id/textViewHomeUser"
+                android:id="@+id/txt_usr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="100dp"
-                android:text="Welcome back Yash Pal"
+                android:text="@string/welcome_back"
                 android:textColor="@color/white"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewHomeDetails"
+                android:id="@+id/txt_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewHomeUser"
                 android:layout_marginTop="20dp"
-                android:text=" Your Details"
+                android:text="@string/your_details"
                 android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_below="@+id/txt_usr"
+                android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rlHome2"
+            android:id="@+id/rl_Center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/rlHome1"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_Header"
             android:layout_marginTop="50dp"
             android:background="@color/black"
             android:gravity="center_horizontal">
 
-            <EditText
-                android:id="@+id/textViewHomeName"
+            <TextView
+                android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edittext_shape"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textColor="@color/black" />
 
-            <EditText
-                android:id="@+id/textViewHomeEmail"
+            <TextView
+                android:id="@+id/edt_txt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewHomeName"
+                android:layout_below="@id/txt_name"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/edittext_shape"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:layout_marginHorizontal="20dp"
                 android:textColor="@color/black" />
 
-            <EditText
-                android:id="@+id/textViewHomePhone"
+            <TextView
+                android:id="@+id/txt_phn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewHomeEmail"
+                android:layout_below="@id/edt_txt_email"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/edittext_shape"
-                android:hint="Phone number"
+                android:hint="@string/phone_number"
                 android:inputType="phone"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:layout_marginHorizontal="20dp"/>
+        </RelativeLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btn_floating"
@@ -103,12 +108,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/orange"
                 android:src="@drawable/ic_baseline_control_point_24"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="30dp"/>
 
-        </RelativeLayout>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

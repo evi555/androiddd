@@ -7,33 +7,57 @@ import androidx.core.view.GravityCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.sharedsecuritysystem.R;
 import com.example.sharedsecuritysystem.databinding.ActivityHomeBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ActivityHomeBinding homeBinding;
-
-    /*ImageView imageView;
-    DrawerLayout drawerLayout;
-    FloatingActionButton floatingActionButton;
-    NavigationView navigationView;*/
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeBinding=ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());
+        db = FirebaseFirestore.getInstance();
 
-        /*imageView = findViewById(R.id.imageViewHomeHamburger);
-        drawerLayout=findViewById(R.id.drawer1);
-        floatingActionButton = findViewById(R.id.btn_floating);
-        navigationView = findViewById(R.id.navViewHome);*/
+
+        String userId =  getIntent().getStringExtra("userId");
+
+        DocumentReference docRef = db.collection("Users").document(userId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("TAG", "DocumentSnapshot data: " + document.getData().get("email"));
+                        homeBinding.edtTxtEmail.setText(document.getData().get("email").toString());
+                        homeBinding.txtName.setText(document.getData().get("name").toString());
+                        homeBinding.txtPhn.setText(document.getData().get("phoneNum").toString());
+                    } else {
+                        Log.d("TAG", "No such document");
+                    }
+                } else {
+                    Log.d("TAG", "get failed with ", task.getException());
+                }
+            }
+        });
+        //Log.e("","USer Values are: "+email+"  " +name+" "+userId);
+
         homeBinding.navViewHome.setNavigationItemSelectedListener(this);
 
-        homeBinding.imageViewHomeHamburger.setOnClickListener(new View.OnClickListener() {
+        homeBinding.imgHmburgr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(homeBinding.drawerHome.isDrawerOpen(GravityCompat.START)){

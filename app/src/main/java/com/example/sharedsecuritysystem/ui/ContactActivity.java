@@ -4,14 +4,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.databinding.ActivityContactBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -19,41 +15,42 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ContactActivity extends AppCompatActivity {
+    ActivityContactBinding contactBinding;
 
-    private EditText contactNameEdt, contactEmailEdt, contactPhoneEdt;
-    private Button createContact;
+    /*private EditText contactNameEdt, contactEmailEdt, contactPhoneEdt;
+    private Button createContact;*/
     ProgressDialog progressDialog;
 
     private String contactName, contactEmail, contactPhone;
-
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact);
+        contactBinding=ActivityContactBinding.inflate(getLayoutInflater());
+        setContentView(contactBinding.getRoot());
 
         db = FirebaseFirestore.getInstance();
         progressDialog= new ProgressDialog(this);
 
-        contactNameEdt=findViewById(R.id.editTextContactName);
+        /*contactNameEdt=findViewById(R.id.editTextContactName);
         contactEmailEdt=findViewById(R.id.editTextContactEmail);
         contactPhoneEdt=findViewById(R.id.editTextContactPhone);
-        createContact=findViewById(R.id.btn_createContact);
+        createContact=findViewById(R.id.btn_createContact);*/
 
-        createContact.setOnClickListener(new View.OnClickListener() {
+        contactBinding.btnCrtCnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                contactName=contactNameEdt.getText().toString();
-                contactEmail=contactEmailEdt.getText().toString();
-                contactPhone=contactPhoneEdt.getText().toString();
+                contactName=contactBinding.txtName.getText().toString();
+                contactEmail=contactBinding.txtEmail.getText().toString();
+                contactPhone=contactBinding.txtPhn.getText().toString();
 
                 if(TextUtils.isEmpty(contactName)){
-                    contactNameEdt.setError("Please enter name");
+                    contactBinding.txtName.setError("Please enter name");
                 }else if(TextUtils.isEmpty(contactEmail)){
-                    contactEmailEdt.setError("Please enter email");
+                    contactBinding.txtEmail.setError("Please enter email");
                 }else if(TextUtils.isEmpty(contactPhone)){
-                    contactPhoneEdt.setError("Please enter phone number");
+                    contactBinding.txtPhn.setError("Please enter phone number");
                 }else{
                     progressDialog.setMessage("Please wait while creating contact...");
                     progressDialog.setTitle("Creating");
@@ -62,10 +59,8 @@ public class ContactActivity extends AppCompatActivity {
                     addDataToFireStore(contactName, contactEmail, contactPhone);
 
                 }
-
             }
         });
-
     }
 
     private void addDataToFireStore(String contactName, String contactEmail, String contactPhone) {

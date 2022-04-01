@@ -7,29 +7,41 @@
         android:layout_height="match_parent"
         tools:context=".ui.LoginActivity" >
 
-    <TextView
-        android:id="@+id/textViewLoginSignIn"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_Header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="200dp"
-        android:text="Sign In"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="150dp"
+        tools:ignore="InvalidId">
 
+        <TextView
+            android:id="@+id/txt_SignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="@string/sign_in"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_Center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_Header" >
             <LinearLayout
-                android:id="@+id/lnrLogin1"
+                android:id="@+id/lnr_Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_shape"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal"
-                android:layout_below="@+id/textViewLoginSignIn"
                 android:layout_marginTop="100dp">
 
                 <ImageView
-                    android:id="@+id/imageViewLoginEmail"
+                    android:id="@+id/img_Login"
                     android:layout_width="50dp"
                     android:background="@drawable/image_shape"
                     android:layout_height="40dp"
@@ -37,20 +49,20 @@
                     app:srcCompat="@drawable/email1" />
 
                 <EditText
-                    android:padding="10dp"
-                    android:background="@color/white"
-                    android:id="@+id/editTextLoginEmail"
+                    android:id="@+id/edt_txt_Email"
                     android:layout_width="match_parent"
-                    android:layout_marginRight="5dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/white"
+                    android:hint="@string/enter_email"
                     android:inputType="textEmailAddress"
-                    android:hint="Enter email"/>
+                    android:padding="10dp" />
 
             </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lnrLogin2"
-            android:layout_below="@+id/lnrLogin1"
+            android:id="@+id/lnr_pswrd"
+            android:layout_below="@+id/lnr_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -59,7 +71,7 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:id="@+id/imageViewLoginPassword"
+                android:id="@+id/img_pswrd"
                 android:layout_width="50dp"
                 android:background="@drawable/image_shape"
                 android:layout_height="40dp"
@@ -68,40 +80,45 @@
                 />
 
             <EditText
-                android:id="@+id/editTextLoginPassword"
+                android:id="@+id/edt_txt_pswrd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:inputType="textPassword"
-                android:hint="Enter password"
+                android:hint="@string/enter_password"
                 android:padding="10dp"/>
         </LinearLayout>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textViewLoginNewUser"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_Bottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lnrLogin2"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="40dp"
-        android:text="New User"
-        android:textColor="@color/blue"
+        android:layout_below="@id/rl_Center"
+        android:layout_marginTop="40dp">
 
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txt_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:text="@string/new_user"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lnrLogin2"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/orange"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/black" />
+    </RelativeLayout>
 
 </RelativeLayout>
