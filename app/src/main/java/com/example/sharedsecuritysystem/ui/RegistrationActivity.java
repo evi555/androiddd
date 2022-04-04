@@ -24,16 +24,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RegistrationActivity extends AppCompatActivity {
     ActivityResigtrationBinding binding;
     private FirebaseFirestore db;
-
-    /*TextView textView;
-    Button button;
-    EditText inputEmail, inputPassword, inputConfirmPassword, inputName, inputPhone;*/
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
-
-
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    Boolean own;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,48 +38,32 @@ public class RegistrationActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        //checkButton();
-
-        /*inputEmail = findViewById(R.id.editTextRegistrationEmail);
-        inputPassword=findViewById(R.id.editTextRegistrationPassword);
-        inputConfirmPassword=findViewById(R.id.editTextRegistrationConfirmPassword);
-        inputName=findViewById(R.id.editTextRegistrationUser);
-        inputPhone=findViewById(R.id.editTextRegistrationPhone);*/
-
-
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-
-        /*textView = findViewById(R.id.textViewRegistrationLogin);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finishAffinity();
-            }
-        });*/
 
         binding.llSysId.setVisibility(View.GONE);
 
         binding.rdBtnOwn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (binding.rdBtnOwn.isChecked())
+                if (binding.rdBtnOwn.isChecked()) {
                     binding.llSysId.setVisibility(View.VISIBLE);
+                     own = true;
 
-                else
+                }else
                     binding.llSysId.setVisibility(View.GONE);
+                    own = false;
             }
         });
 
         binding.rdBtnDntOwn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (binding.rdBtnDntOwn.isChecked())
+                if (binding.rdBtnDntOwn.isChecked()) {
                     binding.llSysId.setVisibility(View.GONE);
-                else
+                    own = false;
+                }else
                     binding.llSysId.setVisibility(View.VISIBLE);
             }
         });
@@ -96,16 +75,6 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-        /*button = findViewById(R.id.btn_registration);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PerforAuth();
-                *//*Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finishAffinity();*//*
-            }
-        });*/
         binding.btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,13 +84,13 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-
     private void PerforAuth() {
         String email = binding.edtTxtEmail.getText().toString();
         String password = binding.edtTxtPswrd.getText().toString();
         String confirmPassword = binding.edtTxtCnfrmPswrd.getText().toString();
         String name = binding.edtTxtUsr.getText().toString();
         String phone = binding.edtTxtPhn.getText().toString();
+        String sysID = binding.edtTxtSysId.getText().toString();
 
         if (!email.matches(emailPattern)) {
             binding.edtTxtEmail.setError("Enter Correct Email");
@@ -160,14 +129,14 @@ public class RegistrationActivity extends AppCompatActivity {
         Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
 //        intent.putExtra("email", ());
 //        intent.putExtra("userId", mUser.getUid());
-//        intent.putExtra("name", mUser.getDisplayName());
+          //intent.putExtra("own", mUser.getUid());
         startActivity(intent);
     }
 
 
     private void addDataToFireStore(FirebaseUser user) {
         RegistrationData userLogin = new RegistrationData(binding.edtTxtUsr.getText().toString(),
-                user.getEmail(), binding.edtTxtPhn.getText().toString());
+                user.getEmail(), binding.edtTxtPhn.getText().toString(), binding.edtTxtSysId.getText().toString(), binding.rdBtnOwn.getText().toString());
 
         db.collection("Users").document(user.getUid())
                 .set(userLogin)

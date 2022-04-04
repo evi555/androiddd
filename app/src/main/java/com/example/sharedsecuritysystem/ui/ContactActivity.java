@@ -3,16 +3,26 @@ package com.example.sharedsecuritysystem.ui;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.sharedsecuritysystem.databinding.ActivityContactBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.List;
+import java.util.Map;
 
 public class ContactActivity extends AppCompatActivity {
     ActivityContactBinding contactBinding;
@@ -30,6 +40,7 @@ public class ContactActivity extends AppCompatActivity {
         contactBinding=ActivityContactBinding.inflate(getLayoutInflater());
         setContentView(contactBinding.getRoot());
 
+        String userId = getIntent().getStringExtra("userID");
         db = FirebaseFirestore.getInstance();
         progressDialog= new ProgressDialog(this);
 
@@ -56,15 +67,18 @@ public class ContactActivity extends AppCompatActivity {
                     progressDialog.setTitle("Creating");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
-                    addDataToFireStore(contactName, contactEmail, contactPhone);
+
+                    addDataToFireStore(userId, contactName, contactEmail, contactPhone);
 
                 }
             }
         });
+
+
     }
 
-    private void addDataToFireStore(String contactName, String contactEmail, String contactPhone) {
-        CollectionReference dbContacts = db.collection("Contacts");
+    private void addDataToFireStore(String userId, String contactName, String contactEmail, String contactPhone) {
+        CollectionReference dbContacts = db.collection("Users").document(userId).collection("Contacts");
         Contact contacts = new Contact(contactName, contactEmail, contactPhone);
         dbContacts.add(contacts).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -79,4 +93,24 @@ public class ContactActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*private void addDataToFireStore(FirebaseUser user, String contactName, String contactEmail, String contactPhone) {
+        Contact userLogin = new Contact(contactBinding.txtEmail.getText().toString(),
+                contactBinding.txtPhn.getText().toString(), contactBinding.txtName.getText().toString());
+
+        db.collection("Users").document(user.getUid())
+                .set(userLogin)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
+    }*/
 }

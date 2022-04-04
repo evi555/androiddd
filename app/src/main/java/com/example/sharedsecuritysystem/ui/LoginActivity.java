@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.sharedsecuritysystem.Response.ContactResponse;
+//import com.example.sharedsecuritysystem.Response.ContactResponse;
 import com.example.sharedsecuritysystem.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                         //task.getResult().getUser().getIdToken(true);
                         progressDialog.dismiss();
                         mUser = task.getResult().getUser();
-                        addDataToFireStore(task.getResult().getUser());
+                        //addDataToFireStore(task.getResult().getUser());
                         sendUserToNextActivity();
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     } else {
@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void addDataToFireStore(FirebaseUser user) {
+    /*private void addDataToFireStore(FirebaseUser user) {
         ContactResponse newuser = new ContactResponse("", "", "");
         Task<DocumentReference> dbRegistration = db.collection("Users").document(user.getUid()).
                 collection("Contacts").add(newuser);
@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.w("TAG", "Error adding document", e);
                     }
                 });
-    }
+    }*/
 
     private void sendUserToNextActivity() {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

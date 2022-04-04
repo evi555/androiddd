@@ -24,15 +24,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     ActivityHomeBinding homeBinding;
     private FirebaseFirestore db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeBinding=ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());
         db = FirebaseFirestore.getInstance();
-
-
         String userId =  getIntent().getStringExtra("userId");
+
+
+
 
         DocumentReference docRef = db.collection("Users").document(userId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -42,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d("TAG", "DocumentSnapshot data: " + document.getData().get("email"));
+                        homeBinding.txtUsr.setText("Welcome back " + document.getData().get("name").toString());
                         homeBinding.edtTxtEmail.setText(document.getData().get("email").toString());
                         homeBinding.txtName.setText(document.getData().get("name").toString());
                         homeBinding.txtPhn.setText(document.getData().get("phoneNum").toString());
@@ -73,6 +76,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ContactActivity.class);
+                intent.putExtra("userID",userId);
                 startActivity(intent);
             }
         });
@@ -87,7 +91,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //                finishAffinity();
                 break;
             case R.id.nav_contact_list:
-                startActivity(new Intent(this, ContactListActivity.class));
+                //startActivity(new Intent(this, ContactListActivity.class));
+                Intent intent = new Intent(HomeActivity.this, ContactListActivity.class);
+                String userId =  getIntent().getStringExtra("userId");
+                intent.putExtra("userId",userId);
+                startActivity(intent);
 //                finishAffinity();
                 break;
             case R.id.nav_logout:

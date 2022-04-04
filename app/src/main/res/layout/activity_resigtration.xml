@@ -195,7 +195,7 @@
                 android:layout_marginEnd="5dp"
                 android:background="@color/white"
                 android:hint="@string/enter_system_id"
-                android:inputType="number"
+                android:inputType="text"
                 android:padding="10dp" />
         </LinearLayout>
     </RelativeLayout>
@@ -206,31 +206,31 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_Center">
 
-    <RadioGroup
-        android:id="@+id/rd_grp_reg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-    <RadioButton
-        android:id="@+id/rd_btn_own"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/white"
-        android:text="@string/i_own_a_security_system"
-        android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/rd_btn_dnt_own"
+        <RadioGroup
+            android:id="@+id/rd_grp_reg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/i_don_t_own_a_security_system"
-            android:textColor="@color/white"
-            android:layout_marginStart="20dp"/>
-    </RadioGroup>
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_btn_own"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:text="@string/i_own_a_security_system"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rd_btn_dnt_own"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="@string/i_don_t_own_a_security_system"
+                android:textColor="@color/white" />
+        </RadioGroup>
     </RelativeLayout>
 
     <RelativeLayout
