@@ -33,7 +33,8 @@ public class ContactListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
-        String userId =  getIntent().getStringExtra("userId");
+
+        String userId =  getIntent().getStringExtra("userID");
         recyclerView = findViewById(R.id.recyclerContactList);
 
         //List<Collection> Contacts = document.getList("Contacts");

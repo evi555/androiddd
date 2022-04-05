@@ -1,6 +1,7 @@
 package com.example.sharedsecuritysystem.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -85,6 +86,10 @@ public class ContactActivity extends AppCompatActivity {
             public void onSuccess(DocumentReference documentReference) {
                 progressDialog.dismiss();
                 Toast.makeText(ContactActivity.this, "Your contact have been created", Toast.LENGTH_SHORT).show();
+                //finishAffinity();
+                Log.e("7h7yn8i", userId);
+                sendUserToNextActivity(userId);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -94,23 +99,11 @@ public class ContactActivity extends AppCompatActivity {
         });
     }
 
-    /*private void addDataToFireStore(FirebaseUser user, String contactName, String contactEmail, String contactPhone) {
-        Contact userLogin = new Contact(contactBinding.txtEmail.getText().toString(),
-                contactBinding.txtPhn.getText().toString(), contactBinding.txtName.getText().toString());
+    private void sendUserToNextActivity(String userId) {
+        Intent intent = new Intent(this, ContactListActivity.class);
+        intent.putExtra("userID",userId);
+        startActivity(intent);
+    }
 
-        db.collection("Users").document(user.getUid())
-                .set(userLogin)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error writing document", e);
-                    }
-                });
-    }*/
+
 }
