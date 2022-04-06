@@ -1,6 +1,8 @@
 package com.example.sharedsecuritysystem.Response;
 
-public class ContactResponse {
+import java.io.Serializable;
+
+public class ContactResponse implements Serializable {
     private String name;
     private String email;
     private String phone;

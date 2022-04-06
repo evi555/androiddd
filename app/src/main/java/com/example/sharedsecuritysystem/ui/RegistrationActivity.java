@@ -16,7 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class RegistrationActivity extends AppCompatActivity {
     ActivityResigtrationBinding binding;
@@ -112,6 +116,16 @@ public class RegistrationActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         progressDialog.dismiss();
                         sendUserToNextActivity();
+                        /*FirebaseUser user = mAuth.getCurrentUser();
+                        String uid=user.getUid();*/
+                        /*HashMap<Object,String> hashMap=new HashMap<>();
+                        hashMap.put("email",email);
+                        hashMap.put("uid",uid);
+                        hashMap.put("name",name);
+                        hashMap.put("phone",phone);
+                        FirebaseDatabase database=FirebaseDatabase.getInstance();
+                        DatabaseReference reference=database.getReference("Users");
+                        reference.child(uid).setValue(hashMap);*/
                         addDataToFireStore(task.getResult().getUser());
                         Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                     } else {
@@ -129,7 +143,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void addDataToFireStore(FirebaseUser user) {
-        //Log.w("TAG", resul);
         RegistrationData userLogin = new RegistrationData(binding.edtTxtUsr.getText().toString(),
                 user.getEmail(), binding.edtTxtPhn.getText().toString(), binding.edtTxtSysId.getText().toString(), binding.rdBtnOwn.isChecked(), binding.rdBtnDntOwn.isChecked());
 

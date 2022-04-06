@@ -3,6 +3,7 @@ package com.example.sharedsecuritysystem.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -10,6 +11,8 @@ import com.example.sharedsecuritysystem.Adapter.ContactAdapter;
 import com.example.sharedsecuritysystem.R;
 import com.example.sharedsecuritysystem.Response.ContactResponse;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,14 +31,18 @@ public class ContactListActivity extends AppCompatActivity {
     ContactAdapter contactAdapter;
     ArrayList<ContactResponse> list;
     private FirebaseFirestore db;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
 
-        String userId =  getIntent().getStringExtra("userID");
+        String userId =  getIntent().getStringExtra("userId");
         recyclerView = findViewById(R.id.recyclerContactList);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         //List<Collection> Contacts = document.getList("Contacts");
 
@@ -43,7 +50,7 @@ public class ContactListActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
-        CollectionReference applicationsRef = db.collection("Users").document(userId).
+        CollectionReference applicationsRef = db.collection("Users").document(mUser.getUid()).
                 collection("Contacts");
 
         applicationsRef.get().addOnCompleteListener(task -> {
@@ -53,14 +60,21 @@ public class ContactListActivity extends AppCompatActivity {
                     list.add(new ContactResponse(document.getString("contactEmail"),document.getString("contactName"),document.getString("contactPhone")));
 
                 }
-                contactAdapter = new ContactAdapter(list,this);
+                contactAdapter = new ContactAdapter(list,this,userId);
                 recyclerView.setAdapter(contactAdapter);
-
+                //sendUserToNextActivity(userId);
                 //Log.d("TAG",list.get(1).getPhone().toString());
                 } else {
                  Log.d("TAG", "Error getting documents: ", task.getException());
                 }
             //List<Map<String, Object>> Users = (List<Map<String, Object>>) document().get("Contacts");
         });
+    }
+
+    private void sendUserToNextActivity(String userId) {
+        Intent intent = new Intent(this, UpdateContactActivity.class);
+        //Intent intent = new Intent();
+        intent.putExtra("userId",userId);
+        startActivity(intent);
     }
 }

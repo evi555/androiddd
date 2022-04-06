@@ -3,6 +3,7 @@ package com.example.sharedsecuritysystem.Adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +13,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.ui.Contact;
 import com.example.sharedsecuritysystem.ui.UpdateContactActivity;
 import com.example.sharedsecuritysystem.Response.ContactResponse;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
     ArrayList<ContactResponse> list;
     Context context;
-    public ContactAdapter(ArrayList<ContactResponse> list,Context context) {
+    String userId;
+
+    public ContactAdapter(ArrayList<ContactResponse> list, Context context, String userId) {
         this.context=context;
         this.list = list;
+        this.userId=userId;
     }
 
     @NonNull
@@ -34,7 +40,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
+                ContactResponse contact = list.get(position);
                 holder.textViewName.setText(list.get(position).getName());
                 holder.textViewPhone.setText(list.get(position).getPhone());
                 holder.textViewEmail.setText(list.get(position).getEmail());
@@ -48,11 +54,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(view.getContext(), UpdateContactActivity.class);
-                        intent.putExtra("Name", list.get(position).getName());
-                        intent.putExtra("Email", list.get(position).getEmail());
-                        intent.putExtra("Phone", list.get(position).getPhone());
+                        ContactResponse contact = list.get(holder.getAdapterPosition());
+                        Intent intent = new Intent(context, UpdateContactActivity.class);
+                        intent.putExtra("Contacts", contact);
+                        intent.putExtra("userId", userId);
                         context.startActivity(intent);
+//                        Intent intent = new Intent(view.getContext(), UpdateContactActivity.class);
+//                        intent.putExtra("Name", list.get(position).getName());
+//                        intent.putExtra("Email", list.get(position).getEmail());
+//                        intent.putExtra("Phone", list.get(position).getPhone());
+
                     }
                 });
     }

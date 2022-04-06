@@ -1,6 +1,8 @@
 package com.example.sharedsecuritysystem.ui;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
 
     private String contactName, contactEmail, contactPhone;
 

@@ -1,10 +1,14 @@
 package com.example.sharedsecuritysystem.ui;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 //import com.example.sharedsecuritysystem.Response.ContactResponse;
@@ -22,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding loginbinding;
     private FirebaseFirestore db;
+
     private String Name, Email, Phone;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
@@ -35,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         loginbinding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(loginbinding.getRoot());
 
-        FirebaseMessaging.getInstance().subscribeToTopic("weather")
+        /*FirebaseMessaging.getInstance().subscribeToTopic("weather")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -44,13 +49,40 @@ public class LoginActivity extends AppCompatActivity {
                             msg = "Failed";
                         }
                     }
-                });
-
+                });*/
 
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+
+
+        //mUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser != null) {
+            // User is signed in
+            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        } else {
+            // User is signed out
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+        }
+
+
+        /*FirebaseAuth.AuthStateListener mAuthListener;
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
+            @Override
+            public  void  onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null){
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        };*/
 
         loginbinding.txtUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                         //task.getResult().getUser().getIdToken(true);
                         progressDialog.dismiss();
                         mUser = task.getResult().getUser();
+                        //savedata(email);
                         //addDataToFireStore(task.getResult().getUser());
                         sendUserToNextActivity();
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
@@ -101,8 +134,19 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /*void savedata(String email){
+        SharedPreferences sharedPreferences=getSharedPreferences("logindata",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putBoolean("logincounter",true);
+        editor.putString("useremail",email);
+        editor.apply();
+        startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+        finish();
+    }*/
+
     private void sendUserToNextActivity() {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        Log.e("abc", mUser.getUid());
         intent.putExtra("userId",mUser.getUid());
         startActivity(intent);
     }

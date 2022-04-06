@@ -31,7 +31,8 @@ public class ContactActivity extends AppCompatActivity {
     /*private EditText contactNameEdt, contactEmailEdt, contactPhoneEdt;
     private Button createContact;*/
     ProgressDialog progressDialog;
-
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
     private String contactName, contactEmail, contactPhone;
     private FirebaseFirestore db;
 
@@ -41,9 +42,11 @@ public class ContactActivity extends AppCompatActivity {
         contactBinding=ActivityContactBinding.inflate(getLayoutInflater());
         setContentView(contactBinding.getRoot());
 
-        String userId = getIntent().getStringExtra("userID");
+        String userId = getIntent().getStringExtra("userId");
         db = FirebaseFirestore.getInstance();
         progressDialog= new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         /*contactNameEdt=findViewById(R.id.editTextContactName);
         contactEmailEdt=findViewById(R.id.editTextContactEmail);
@@ -79,7 +82,7 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void addDataToFireStore(String userId, String contactName, String contactEmail, String contactPhone) {
-        CollectionReference dbContacts = db.collection("Users").document(userId).collection("Contacts");
+        CollectionReference dbContacts = db.collection("Users").document(mUser.getUid()).collection("Contacts");
         Contact contacts = new Contact(contactName, contactEmail, contactPhone);
         dbContacts.add(contacts).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -101,7 +104,7 @@ public class ContactActivity extends AppCompatActivity {
 
     private void sendUserToNextActivity(String userId) {
         Intent intent = new Intent(this, ContactListActivity.class);
-        intent.putExtra("userID",userId);
+        intent.putExtra("userId",userId);
         startActivity(intent);
     }
 

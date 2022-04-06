@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +17,8 @@ import com.example.sharedsecuritysystem.databinding.ActivityHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +28,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseFirestore db;
     NavigationView navigationView;
     Boolean abc;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +38,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(homeBinding.getRoot());
         db = FirebaseFirestore.getInstance();
         String userId =  getIntent().getStringExtra("userId");
+        //Log.e("userId", userId);
+        mAuth = FirebaseAuth.getInstance();
+        mUser=mAuth.getCurrentUser();
+        //Log.e("userId2", mUser.getUid());
 
-        DocumentReference docRef = db.collection("Users").document(userId);
+        /*homeBinding.navViewHome.findViewById(R.id.nav_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                SharedPreferences sharedPreferences=getSharedPreferences("logindata",MODE_PRIVATE);
+                sharedPreferences.edit().clear().commit();
+                startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+                finish();
+            }
+        });*/
+
+        DocumentReference docRef = db.collection("Users").document(mUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -75,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ContactActivity.class);
-                intent.putExtra("userID",userId);
+                intent.putExtra("userId",userId);
                 startActivity(intent);
             }
         });
@@ -108,8 +128,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                                finishAffinity();
+                                mAuth.signOut();
+                                /*SharedPreferences sharedPreferences=getSharedPreferences("logindata",MODE_PRIVATE);
+                                sharedPreferences.edit().clear().commit();
+                                startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+                                finish();*/
+                               // startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                                // finishAffinity();
                             }
                         }).setNegativeButton("No", null).show();
                 break;
@@ -132,6 +157,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
+
+    /*@Override
+    protected void onStart() {
+        super.onStart();
+        checkuserstatus();
+    }
+
+        void checkuserstatus() {
+            SharedPreferences sharedPreferences = getSharedPreferences("logindata", MODE_PRIVATE);
+            Boolean counter = sharedPreferences.getBoolean("logincounter", Boolean.valueOf(String.valueOf(MODE_PRIVATE)));
+            String email = sharedPreferences.getString("useremail", String.valueOf(MODE_PRIVATE));
+            if (counter) {
+                homeBinding.txtName.setText(email);
+            } else {
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                finish();
+            }
+        }*/
+
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
