@@ -1,46 +1,50 @@
 package com.example.sharedsecuritysystem.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.CompoundButton;
 
 import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.databinding.ActivitySystemControlBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.File;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class SystemControlActivity extends AppCompatActivity {
+    ActivitySystemControlBinding binding;
 
-
-    File destination;
-    Uri selectedImage;
-    public static String selectedPath1 = "NONE";
-    private static final int PICK_Camera_IMAGE = 2;
-    private static final int SELECT_FILE1 = 1;
-    public static Bitmap bmpScale;
-    public static String imagePath;
-
-    ImageView imageView;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_system_control);
+        binding = ActivitySystemControlBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 
-        imageView = findViewById(R.id.cameraimg);
-        /*imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                *//*intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(destination));*//*
-                startActivityForResult(intent, PICK_Camera_IMAGE);
+        CollectionReference applicationsRef = db.collection("Users").document(mUser.getUid()).
+                collection("System Control");
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        DatabaseReference ref = mDatabase.child("states").child("001");
+
+        /*binding.btnSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Map<String, Object> newStatus = new HashMap<>();
+                childUpdates.put("states", isChecked)
+
+                ref.update(newStatus)
             }
         });*/
 

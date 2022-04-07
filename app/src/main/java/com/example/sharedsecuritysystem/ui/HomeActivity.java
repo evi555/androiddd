@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,21 +37,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(homeBinding.getRoot());
         db = FirebaseFirestore.getInstance();
         String userId =  getIntent().getStringExtra("userId");
-        //Log.e("userId", userId);
         mAuth = FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
-        //Log.e("userId2", mUser.getUid());
-
-        /*homeBinding.navViewHome.findViewById(R.id.nav_logout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                SharedPreferences sharedPreferences=getSharedPreferences("logindata",MODE_PRIVATE);
-                sharedPreferences.edit().clear().commit();
-                startActivity(new Intent(HomeActivity.this,LoginActivity.class));
-                finish();
-            }
-        });*/
 
         DocumentReference docRef = db.collection("Users").document(mUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -129,12 +115,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mAuth.signOut();
-                                /*SharedPreferences sharedPreferences=getSharedPreferences("logindata",MODE_PRIVATE);
-                                sharedPreferences.edit().clear().commit();
-                                startActivity(new Intent(HomeActivity.this,LoginActivity.class));
-                                finish();*/
-                               // startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                                // finishAffinity();
+                                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                                 finishAffinity();
                             }
                         }).setNegativeButton("No", null).show();
                 break;
@@ -157,25 +139,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
-
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-        checkuserstatus();
-    }
-
-        void checkuserstatus() {
-            SharedPreferences sharedPreferences = getSharedPreferences("logindata", MODE_PRIVATE);
-            Boolean counter = sharedPreferences.getBoolean("logincounter", Boolean.valueOf(String.valueOf(MODE_PRIVATE)));
-            String email = sharedPreferences.getString("useremail", String.valueOf(MODE_PRIVATE));
-            if (counter) {
-                homeBinding.txtName.setText(email);
-            } else {
-                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                finish();
-            }
-        }*/
-
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

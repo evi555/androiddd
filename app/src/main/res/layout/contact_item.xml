@@ -49,74 +49,16 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-
+        <ImageView
+            android:id="@+id/imageViewContactListDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            app:tint="@color/red" />
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/imageViewContactListDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_baseline_delete_forever_24"
-        app:tint="@color/red" />
-
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/relativelayout3"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_below="@id/relativelayout2"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:background="@drawable/layout_shape">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textviewName2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:padding="2dp"-->
-<!--            android:text="Name2"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="18dp"-->
-<!--            android:textStyle="bold" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textviewEmail2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/textviewName2"-->
-<!--            android:layout_marginHorizontal="20dp"-->
-<!--            android:padding="2dp"-->
-<!--            android:text="Email2"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="15sp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textviewPhone2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/textviewEmail2"-->
-<!--            android:layout_marginHorizontal="20dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:padding="2dp"-->
-<!--            android:text="Phone2"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="15sp" />-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:src="@drawable/ic_baseline_delete_forever_24"-->
-<!--            app:tint="@color/red" />-->
-<!--    </RelativeLayout>-->
 
 </RelativeLayout>

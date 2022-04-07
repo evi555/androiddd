@@ -3,32 +3,38 @@ package com.example.sharedsecuritysystem.Adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharedsecuritysystem.R;
-import com.example.sharedsecuritysystem.ui.Contact;
 import com.example.sharedsecuritysystem.ui.UpdateContactActivity;
 import com.example.sharedsecuritysystem.Response.ContactResponse;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
     ArrayList<ContactResponse> list;
     Context context;
     String userId;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
     public ContactAdapter(ArrayList<ContactResponse> list, Context context, String userId) {
         this.context=context;
         this.list = list;
         this.userId=userId;
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
     }
 
     @NonNull
@@ -59,13 +65,30 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                         intent.putExtra("Contacts", contact);
                         intent.putExtra("userId", userId);
                         context.startActivity(intent);
-//                        Intent intent = new Intent(view.getContext(), UpdateContactActivity.class);
-//                        intent.putExtra("Name", list.get(position).getName());
-//                        intent.putExtra("Email", list.get(position).getEmail());
-//                        intent.putExtra("Phone", list.get(position).getPhone());
-
                     }
                 });
+
+            holder.itemView.findViewById(R.id.imageViewContactListDelete).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FirebaseFirestore.getInstance().collection("Users").document(mUser.getUid()).
+                        collection("Contacts").
+                        document(contact.getUid()).delete().
+                        addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    list.remove(holder.getAdapterPosition());  // remove the item from list
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                    Toast.makeText(context,"item deleted", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(context, "item not deleted", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+            }
+            });
     }
 
     @Override

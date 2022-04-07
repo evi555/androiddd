@@ -76,7 +76,7 @@ public class UpdateContactActivity extends AppCompatActivity {
     private void updatedata(String contactEmail, String contactName, String contactPhone) {
         Contact updatedContact=new Contact(contactEmail,contactName,contactPhone);
 
-        db.collection("Users").document(mUser.getUid()).collection("Contacts").document(mUser.getUid()).set(updatedContact).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("Users").document(mUser.getUid()).collection("Contacts").document(contact.getUid()).set(updatedContact).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(UpdateContactActivity.this, "Contact have been updated..", Toast.LENGTH_SHORT).show();

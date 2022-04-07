@@ -16,11 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
 
 public class RegistrationActivity extends AppCompatActivity {
     ActivityResigtrationBinding binding;
@@ -38,7 +34,6 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
-
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -81,18 +76,17 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 PerforAuth();
-
             }
         });
     }
 
     private void PerforAuth() {
-        String email = binding.edtTxtEmail.getText().toString();
-        String password = binding.edtTxtPswrd.getText().toString();
-        String confirmPassword = binding.edtTxtCnfrmPswrd.getText().toString();
-        String name = binding.edtTxtUsr.getText().toString();
-        String phone = binding.edtTxtPhn.getText().toString();
-        String sysID = binding.edtTxtSysId.getText().toString();
+        String email = binding.edtTxtEmail.getText().toString().trim();
+        String password = binding.edtTxtPswrd.getText().toString().trim();
+        String confirmPassword = binding.edtTxtCnfrmPswrd.getText().toString().trim();
+        String name = binding.edtTxtUsr.getText().toString().trim();
+        String phone = binding.edtTxtPhn.getText().toString().trim();
+        String sysID = binding.edtTxtSysId.getText().toString().trim();
 
         if (!email.matches(emailPattern)) {
             binding.edtTxtEmail.setError("Enter Correct Email");
@@ -104,6 +98,8 @@ public class RegistrationActivity extends AppCompatActivity {
             binding.edtTxtUsr.setError("Enter proper name");
         } else if (phone.isEmpty() || phone.length() < 10) {
             binding.edtTxtPhn.setError("Phone number is not correct");
+        }else if (sysID.isEmpty()) {
+                binding.edtTxtSysId.setError("System ID is not correct");
         } else {
             progressDialog.setMessage("Please wait while registration...");
             progressDialog.setTitle("Registration");
@@ -116,16 +112,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        /*FirebaseUser user = mAuth.getCurrentUser();
-                        String uid=user.getUid();*/
-                        /*HashMap<Object,String> hashMap=new HashMap<>();
-                        hashMap.put("email",email);
-                        hashMap.put("uid",uid);
-                        hashMap.put("name",name);
-                        hashMap.put("phone",phone);
-                        FirebaseDatabase database=FirebaseDatabase.getInstance();
-                        DatabaseReference reference=database.getReference("Users");
-                        reference.child(uid).setValue(hashMap);*/
                         addDataToFireStore(task.getResult().getUser());
                         Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                     } else {

@@ -6,11 +6,13 @@ public class ContactResponse implements Serializable {
     private String name;
     private String email;
     private String phone;
+    private String uid;
 
-    public ContactResponse(String name, String email, String phone) {
+    public ContactResponse(String name, String email, String phone,String uid) {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.uid = uid;
     }
 
     public String getName() {
@@ -36,4 +38,13 @@ public class ContactResponse implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
 }

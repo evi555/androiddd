@@ -72,7 +72,7 @@ public class ContactActivity extends AppCompatActivity {
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
-                    addDataToFireStore(userId, contactName, contactEmail, contactPhone);
+                    addDataToFireStore(contactName, contactEmail, contactPhone);
 
                 }
             }
@@ -81,7 +81,7 @@ public class ContactActivity extends AppCompatActivity {
 
     }
 
-    private void addDataToFireStore(String userId, String contactName, String contactEmail, String contactPhone) {
+    private void addDataToFireStore(String contactName, String contactEmail, String contactPhone) {
         CollectionReference dbContacts = db.collection("Users").document(mUser.getUid()).collection("Contacts");
         Contact contacts = new Contact(contactName, contactEmail, contactPhone);
         dbContacts.add(contacts).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -90,8 +90,8 @@ public class ContactActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 Toast.makeText(ContactActivity.this, "Your contact have been created", Toast.LENGTH_SHORT).show();
                 //finishAffinity();
-                Log.e("7h7yn8i", userId);
-                sendUserToNextActivity(userId);
+                //Log.e("7h7yn8i", userId);
+                sendUserToNextActivity(mUser.getUid());
 
             }
         }).addOnFailureListener(new OnFailureListener() {

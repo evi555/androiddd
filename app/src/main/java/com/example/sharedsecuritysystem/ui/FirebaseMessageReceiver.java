@@ -1,5 +1,8 @@
 package com.example.sharedsecuritysystem.ui;
 
+import android.app.PendingIntent;
+import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -25,5 +28,10 @@ import com.google.firebase.messaging.RemoteMessage;
 
             NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
             managerCompat.notify(101, builder.build());
+
+            Intent intent = new Intent(this, TestActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
         }
     }
