@@ -1,34 +1,93 @@
 {
   "project_info": {
-    "project_number": "852026008022",
-    "project_id": "sharedsecuritysystem",
-    "storage_bucket": "sharedsecuritysystem.appspot.com"
+    "project_number": "211864755460",
+    "project_id": "rr-dating-app",
+    "storage_bucket": "rr-dating-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:852026008022:android:4d14ab2de778f137388477",
+        "mobilesdk_app_id": "1:211864755460:android:0a4f8318da752535d68451",
         "android_client_info": {
-          "package_name": "com.example.sharedsecuritysystem"
+          "package_name": "com.example.dating_app_dashboard"
         }
       },
       "oauth_client": [
         {
-          "client_id": "852026008022-thq5l0dr04dh7vonh2cgcur00cs9vj8k.apps.googleusercontent.com",
+          "client_id": "211864755460-l1f94ci3o7iba2mit4tktt13ce9mdvb2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAjNifJqOsJn6VWaGIYIM2tD5hNu3kt190"
+          "current_key": "AIzaSyDDhVoWhFj3yRyv82Cepk6I-tj-2z2Zfqw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "852026008022-thq5l0dr04dh7vonh2cgcur00cs9vj8k.apps.googleusercontent.com",
+              "client_id": "211864755460-l1f94ci3o7iba2mit4tktt13ce9mdvb2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "211864755460-90dqrdk0bddv6k1f6ud0j8un5ot9u09s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rojarose.ios"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211864755460:android:1fa578584d014bb6d68451",
+        "android_client_info": {
+          "package_name": "com.rojarose.datingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211864755460-pchjquc1imgp0vkdsf497jl2o9c315ln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rojarose.datingapp",
+            "certificate_hash": "192b738872db8766f93b2c827f0f04562174c50c"
+          }
+        },
+        {
+          "client_id": "211864755460-u2vcr4750vem1jj1amuhqsbfcu8mkboh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rojarose.datingapp",
+            "certificate_hash": "4c00c1e90ced118d3e9e105e0ce1a0a29ebd3e98"
+          }
+        },
+        {
+          "client_id": "211864755460-l1f94ci3o7iba2mit4tktt13ce9mdvb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDhVoWhFj3yRyv82Cepk6I-tj-2z2Zfqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211864755460-l1f94ci3o7iba2mit4tktt13ce9mdvb2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "211864755460-90dqrdk0bddv6k1f6ud0j8un5ot9u09s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rojarose.ios"
+              }
             }
           ]
         }

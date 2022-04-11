@@ -98,8 +98,6 @@ public class RegistrationActivity extends AppCompatActivity {
             binding.edtTxtUsr.setError("Enter proper name");
         } else if (phone.isEmpty() || phone.length() < 10) {
             binding.edtTxtPhn.setError("Phone number is not correct");
-        }else if (sysID.isEmpty()) {
-                binding.edtTxtSysId.setError("System ID is not correct");
         } else {
             progressDialog.setMessage("Please wait while registration...");
             progressDialog.setTitle("Registration");
@@ -130,7 +128,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void addDataToFireStore(FirebaseUser user) {
         RegistrationData userLogin = new RegistrationData(binding.edtTxtUsr.getText().toString(),
-                user.getEmail(), binding.edtTxtPhn.getText().toString(), binding.edtTxtSysId.getText().toString(), binding.rdBtnOwn.isChecked(), binding.rdBtnDntOwn.isChecked());
+                user.getEmail(), binding.edtTxtPhn.getText().toString(), binding.edtTxtSysId.getText().toString(), binding.rdBtnOwn.isChecked(), binding.rdBtnDntOwn.isChecked(), false);
 
         db.collection("Users").document(user.getUid())
                 .set(userLogin)

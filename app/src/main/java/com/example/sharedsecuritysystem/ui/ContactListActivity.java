@@ -40,8 +40,8 @@ public class ContactListActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 list = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    list.add(new ContactResponse(document.getString("contactEmail"),
-                            document.getString("contactName"),
+                    list.add(new ContactResponse(document.getString("contactName"),
+                            document.getString("contactEmail"),
                             document.getString("contactPhone"),
                             document.getId()));
                 }

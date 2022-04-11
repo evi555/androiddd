@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.sharedsecuritysystem.Response.ContactResponse;
 import com.example.sharedsecuritysystem.databinding.ActivityUpdateContactBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,6 +20,7 @@ public class UpdateContactActivity extends AppCompatActivity {
 
     String userId;
     ProgressDialog progressDialog;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     private String contactEmail, contactName, contactPhone;
     private FirebaseFirestore db;
@@ -43,38 +42,38 @@ public class UpdateContactActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
 
-        binding.editTextUpdateEmail.setText(contact.getEmail());
         binding.editTextUpdateName.setText(contact.getName());
+        binding.editTextUpdateEmail.setText(contact.getEmail());
         binding.editTextUpdatePhone.setText(contact.getPhone());
 
         binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                contactEmail = binding.editTextUpdateEmail.getText().toString();
                 contactName = binding.editTextUpdateName.getText().toString();
+                contactEmail = binding.editTextUpdateEmail.getText().toString();
                 contactPhone = binding.editTextUpdatePhone.getText().toString();
 
-                if (TextUtils.isEmpty(contactEmail)) {
-                    binding.editTextUpdateEmail.setError("Please enter email");
-                } else if (TextUtils.isEmpty(contactEmail)) {
+                if (TextUtils.isEmpty(contactName)) {
                     binding.editTextUpdateName.setError("Please enter name");
-                } else if (TextUtils.isEmpty(contactPhone)) {
-                    binding.editTextUpdatePhone.setError("Please enter phone number");
+                } else if (!contactEmail.matches(emailPattern)) {
+                    binding.editTextUpdateEmail.setError("Please enter proper email");
+                } else if (TextUtils.isEmpty(contactPhone) || contactPhone.length()<10) {
+                    binding.editTextUpdatePhone.setError("Please enter proper phone number");
                 } else {
                     progressDialog.setMessage("Please wait while creating contact...");
                     progressDialog.setTitle("Creating");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
-                    updatedata(contactEmail, contactName, contactPhone);
+                    updatedata(contactName, contactEmail, contactPhone);
 
                 }
             }
         });
     }
 
-    private void updatedata(String contactEmail, String contactName, String contactPhone) {
-        Contact updatedContact=new Contact(contactEmail,contactName,contactPhone);
+    private void updatedata(String contactName, String contactEmail, String contactPhone) {
+        Contact updatedContact=new Contact(contactName, contactEmail, contactPhone);
 
         db.collection("Users").document(mUser.getUid()).collection("Contacts").document(contact.getUid()).set(updatedContact).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

@@ -127,7 +127,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(this, HistoryActivity.class));
                 break;
             case R.id.nav_system_control:
-                startActivity(new Intent(this, SystemControlActivity.class));
+                intent = new Intent(this, SystemControlActivity.class);
+                userId =  getIntent().getStringExtra("userId");
+                intent.putExtra("userId",userId);
+                startActivity(intent);
+                //finishAffinity();
                 break;
                 case R.id.nav_my_profile:
                     intent = new Intent(this, HomeActivity.class);

@@ -3,18 +3,19 @@ package com.example.sharedsecuritysystem.ui;
 public class RegistrationData {
 
     private String Name, Email, PhoneNum, SysID;
-    private Boolean own, down;
+    private Boolean own, down, sysControl;
 
     public RegistrationData(){
     }
 
-    public RegistrationData(String Name, String Email, String PhoneNum, String SysID, Boolean own, Boolean down){
+    public RegistrationData(String Name, String Email, String PhoneNum, String SysID, Boolean own, Boolean down, Boolean sysControl){
         this.Name=Name;
         this.Email=Email;
         this.PhoneNum=PhoneNum;
         this.SysID=SysID;
         this.own=own;
         this.down=down;
+        this.sysControl=sysControl;
     }
 
     public String getName() {
@@ -52,4 +53,8 @@ public class RegistrationData {
     public Boolean getDown(){return down;}
 
     public void setDown(Boolean setDown){down = down;}
+
+    public Boolean getSysControl(){return sysControl;}
+
+    public void setSysControl(Boolean sysControl){sysControl = sysControl;}
 }

@@ -35,6 +35,7 @@ public class ContactActivity extends AppCompatActivity {
     FirebaseUser mUser;
     private String contactName, contactEmail, contactPhone;
     private FirebaseFirestore db;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +49,6 @@ public class ContactActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
-        /*contactNameEdt=findViewById(R.id.editTextContactName);
-        contactEmailEdt=findViewById(R.id.editTextContactEmail);
-        contactPhoneEdt=findViewById(R.id.editTextContactPhone);
-        createContact=findViewById(R.id.btn_createContact);*/
-
         contactBinding.btnCrtCnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,10 +58,10 @@ public class ContactActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(contactName)){
                     contactBinding.txtName.setError("Please enter name");
-                }else if(TextUtils.isEmpty(contactEmail)){
-                    contactBinding.txtEmail.setError("Please enter email");
-                }else if(TextUtils.isEmpty(contactPhone)){
-                    contactBinding.txtPhn.setError("Please enter phone number");
+                }else if(!contactEmail.matches(emailPattern)){
+                    contactBinding.txtEmail.setError("Please enter proper email");
+                }else if(TextUtils.isEmpty(contactPhone) || contactPhone.length()<10){
+                    contactBinding.txtPhn.setError("Please enter proper phone number");
                 }else{
                     progressDialog.setMessage("Please wait while creating contact...");
                     progressDialog.setTitle("Creating");
@@ -77,8 +73,6 @@ public class ContactActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private void addDataToFireStore(String contactName, String contactEmail, String contactPhone) {
@@ -92,7 +86,6 @@ public class ContactActivity extends AppCompatActivity {
                 //finishAffinity();
                 //Log.e("7h7yn8i", userId);
                 sendUserToNextActivity(mUser.getUid());
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
