@@ -120,10 +120,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/dark"
-        app:itemTextColor="@color/skin"
         app:itemTextAppearance="@style/menuView"
         android:layout_gravity="start"
         app:itemIconTint="@color/white"
-        app:menu="@menu/app_menu" />
+        app:menu="@menu/app_menu"
+        app:itemTextColor="@drawable/selector"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

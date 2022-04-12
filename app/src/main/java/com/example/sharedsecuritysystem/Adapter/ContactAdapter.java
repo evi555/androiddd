@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharedsecuritysystem.R;
 import com.example.sharedsecuritysystem.ui.UpdateContactActivity;
@@ -51,13 +53,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                 holder.textViewPhone.setText(list.get(position).getPhone());
                 holder.textViewEmail.setText(list.get(position).getEmail());
 
-                if(position % 2 ==0)
+
+                if(position % 2 ==0) {
                     holder.relativelayout.getBackground().setTint(context.getResources().getColor(R.color.orange));
-                else
+                    holder.imageView.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
+                }else {
                     holder.relativelayout.getBackground().setTint(context.getResources().getColor(R.color.white));
+                    holder.imageView.setColorFilter(ContextCompat.getColor(context, R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
+                   }
 
-
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         ContactResponse contact = list.get(holder.getAdapterPosition());
@@ -99,12 +104,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
          TextView textViewName, textViewPhone, textViewEmail;
          RelativeLayout relativelayout;
+         ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewContactListName);
             textViewEmail = itemView.findViewById(R.id.textViewContactListEmail);
             textViewPhone = itemView.findViewById(R.id.textViewContactListPhone);
             relativelayout = itemView.findViewById(R.id.rlContactItem);
+            imageView = itemView.findViewById(R.id.imageViewContactListDelete);
         }
     }
 }

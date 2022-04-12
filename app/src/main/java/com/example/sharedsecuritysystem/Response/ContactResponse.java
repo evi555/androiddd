@@ -7,7 +7,6 @@ public class ContactResponse implements Serializable {
     private String email;
     private String phone;
     private String uid;
-
     public ContactResponse(String name, String email, String phone,String uid) {
         this.name = name;
         this.email = email;

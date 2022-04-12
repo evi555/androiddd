@@ -68,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
         String password = loginbinding.edtTxtPswrd.getText().toString().trim();
 
         if (!email.matches(emailPattern)) {
-            loginbinding.edtTxtEmail.setError("Enter Correct Email");
+            loginbinding.edtTxtEmail.setError("Please enter registered Email ID");
         } else if (password.isEmpty() || password.length() < 6) {
-            loginbinding.edtTxtPswrd.setError("Enter proper password");
+            loginbinding.edtTxtPswrd.setError("Please enter correct password");
         } else {
             progressDialog.setMessage("Please wait while Login...");
             progressDialog.setTitle("Login");
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     } else {
                         progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Email id or password is incorrect" , Toast.LENGTH_SHORT).show();
                     }
                 }
             });

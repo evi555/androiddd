@@ -2,6 +2,8 @@ package com.example.sharedsecuritysystem.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import com.example.sharedsecuritysystem.Adapter.ContactAdapter;
@@ -51,5 +53,12 @@ public class ContactListActivity extends AppCompatActivity {
                  Log.d("TAG", "Error getting documents: ", task.getException());
                 }
         });
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finishAffinity();
+
     }
 }

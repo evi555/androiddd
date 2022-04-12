@@ -59,9 +59,9 @@ public class ContactActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(contactName)){
                     contactBinding.txtName.setError("Please enter name");
                 }else if(!contactEmail.matches(emailPattern)){
-                    contactBinding.txtEmail.setError("Please enter proper email");
+                    contactBinding.txtEmail.setError("Please enter valid email");
                 }else if(TextUtils.isEmpty(contactPhone) || contactPhone.length()<10){
-                    contactBinding.txtPhn.setError("Please enter proper phone number");
+                    contactBinding.txtPhn.setError("Please enter valid phone number");
                 }else{
                     progressDialog.setMessage("Please wait while creating contact...");
                     progressDialog.setTitle("Creating");
@@ -69,6 +69,7 @@ public class ContactActivity extends AppCompatActivity {
                     progressDialog.show();
 
                     addDataToFireStore(contactName, contactEmail, contactPhone);
+                    //finishAffinity();
 
                 }
             }
@@ -100,6 +101,4 @@ public class ContactActivity extends AppCompatActivity {
         intent.putExtra("userId",userId);
         startActivity(intent);
     }
-
-
 }

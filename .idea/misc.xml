@@ -5,13 +5,15 @@
       <map>
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable-v24/image_shape.xml" value="0.1145" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable-v24/layout_border.xml" value="0.117" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable/drawer_selected_item.xml" value="0.134" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable/edittext_shape.xml" value="0.1145" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable/layout_shape.xml" value="0.1145" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/drawable/menubackground.xml" value="0.134" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_connected_to.xml" value="0.19166666666666668" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_contact.xml" value="0.171875" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_contact_list.xml" value="0.25" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_history.xml" value="0.19166666666666668" />
-        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_home.xml" value="0.19166666666666668" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_login.xml" value="0.171875" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_resigtration.xml" value="0.171875" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/activity_system_control.xml" value="0.19166666666666668" />
@@ -22,6 +24,7 @@
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/layout_notification.xml" value="0.17760416666666667" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/layout_shape_border.xml" value="0.14479166666666668" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/layout/system_connected_list.xml" value="0.17760416666666667" />
+        <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/menu-v26/app_menu.xml" value="0.19166666666666668" />
         <entry key="..\:/Shared Security System/SharedSecuritySystem/app/src/main/res/menu/app_menu.xml" value="0.19166666666666668" />
       </map>
     </option>

@@ -1,6 +1,7 @@
 package com.example.sharedsecuritysystem.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -56,9 +57,9 @@ public class UpdateContactActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(contactName)) {
                     binding.editTextUpdateName.setError("Please enter name");
                 } else if (!contactEmail.matches(emailPattern)) {
-                    binding.editTextUpdateEmail.setError("Please enter proper email");
+                    binding.editTextUpdateEmail.setError("Please enter valid email");
                 } else if (TextUtils.isEmpty(contactPhone) || contactPhone.length()<10) {
-                    binding.editTextUpdatePhone.setError("Please enter proper phone number");
+                    binding.editTextUpdatePhone.setError("Please enter correct phone number");
                 } else {
                     progressDialog.setMessage("Please wait while creating contact...");
                     progressDialog.setTitle("Creating");
@@ -80,6 +81,7 @@ public class UpdateContactActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 Toast.makeText(UpdateContactActivity.this, "Contact have been updated..", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+                sendUserToNextActivity();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -87,5 +89,10 @@ public class UpdateContactActivity extends AppCompatActivity {
                 Toast.makeText(UpdateContactActivity.this, "Fail to update the data..", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void sendUserToNextActivity() {
+        Intent intent = new Intent(this, ContactListActivity.class);
+        startActivity(intent);
     }
 }

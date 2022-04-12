@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" >
+
+    <item
+        android:id="@+id/nav_my_profile"
+        android:title="My Profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:checked="true" />
+
+    <item
+        android:id="@+id/nav_contact_list"
+        android:title="Contact List"
+        android:icon="@drawable/ic_baseline_contacts_24"
+        android:iconTint="@drawable/selector"/>
+
+    <item
+        android:id="@+id/nav_system_control"
+        android:title="System Control"
+        android:icon="@drawable/ic_baseline_admin_panel_settings_24"
+        android:iconTint="@drawable/selector"/>
+
+    <item
+        android:id="@+id/nav_connected_to"
+        android:title="Connected To"
+        android:icon="@drawable/ic_baseline_people_outline_24"
+        android:iconTint="@drawable/selector" />
+
+    <item
+        android:id="@+id/nav_history"
+        android:title="History"
+        android:icon="@drawable/ic_baseline_history_24"
+        android:iconTint="@drawable/selector"/>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:iconTint="@drawable/selector"/>
+
+    </group>
+
+</menu>
