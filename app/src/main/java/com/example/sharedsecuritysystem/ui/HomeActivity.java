@@ -65,6 +65,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+        homeBinding.btnFloating.setVisibility(View.GONE);
+        navigationView = (NavigationView) findViewById(R.id.navViewHome);
+        Menu nav_menu = navigationView.getMenu();
+        nav_menu.findItem(R.id.nav_contact_list).setVisible(false);
+        nav_menu.findItem(R.id.nav_system_control).setVisible(false);
+
+        /*homeBinding.navViewHome.findViewById(R.id.nav_contact_list).setVisibility(View.GONE);
+        homeBinding.navViewHome.findViewById(R.id.nav_system_control).setVisibility(View.GONE);*/
+
         homeBinding.navViewHome.setNavigationItemSelectedListener(this);
 
         homeBinding.imgHmburgr.setOnClickListener(new View.OnClickListener() {
@@ -93,9 +103,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     {
         navigationView = (NavigationView) findViewById(R.id.navViewHome);
         Menu nav_Menu = navigationView.getMenu();
-        if(abc==false) {
-            nav_Menu.findItem(R.id.nav_contact_list).setVisible(false);
-            nav_Menu.findItem(R.id.nav_system_control).setVisible(false);
+        if(abc==true) {
+            nav_Menu.findItem(R.id.nav_contact_list).setVisible(true);
+            nav_Menu.findItem(R.id.nav_system_control).setVisible(true);
+            homeBinding.btnFloating.setVisibility(View.VISIBLE);
         }
     }
 

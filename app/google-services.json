@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "852026008022",
-    "project_id": "sharedsecuritysystem",
-    "storage_bucket": "sharedsecuritysystem.appspot.com"
+    "project_number": "126112105305",
+    "project_id": "security-system-58cb7",
+    "storage_bucket": "security-system-58cb7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:852026008022:android:4d14ab2de778f137388477",
+        "mobilesdk_app_id": "1:126112105305:android:15e332841cf78bd3b8c248",
         "android_client_info": {
           "package_name": "com.example.sharedsecuritysystem"
         }
       },
       "oauth_client": [
         {
-          "client_id": "852026008022-thq5l0dr04dh7vonh2cgcur00cs9vj8k.apps.googleusercontent.com",
+          "client_id": "126112105305-jrp5bf4s7m957ttob7r4c6srtlvl6age.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAjNifJqOsJn6VWaGIYIM2tD5hNu3kt190"
+          "current_key": "AIzaSyDcPuOA06FrlBc2-k3Nho4EFi3u4f3sA9A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "852026008022-thq5l0dr04dh7vonh2cgcur00cs9vj8k.apps.googleusercontent.com",
+              "client_id": "126112105305-jrp5bf4s7m957ttob7r4c6srtlvl6age.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
