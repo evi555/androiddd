@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,9 +32,7 @@ import java.util.Map;
 
 public class ContactActivity extends AppCompatActivity {
     ActivityContactBinding contactBinding;
-
-    /*private EditText contactNameEdt, contactEmailEdt, contactPhoneEdt;
-    private Button createContact;*/
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://security-system-58cb7-default-rtdb.firebaseio.com/");
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -43,7 +46,7 @@ public class ContactActivity extends AppCompatActivity {
         contactBinding=ActivityContactBinding.inflate(getLayoutInflater());
         setContentView(contactBinding.getRoot());
 
-        String userId = getIntent().getStringExtra("userId");
+        String userId = getIntent().getStringExtra("uid");
         db = FirebaseFirestore.getInstance();
         progressDialog= new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
@@ -68,9 +71,37 @@ public class ContactActivity extends AppCompatActivity {
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
-                    addDataToFireStore(contactName, contactEmail, contactPhone);
+                    //addDataToFireStore(contactName, contactEmail, contactPhone);
                     //finishAffinity();
+                    databaseReference.child("users").child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.hasChild(mUser.getUid())) {
+                                Toast.makeText(ContactActivity.this, "", Toast.LENGTH_SHORT).show();
+                            } else {
+                                progressDialog.dismiss();
+                        /*RegistrationData data = new RegistrationData(name, email,
+                                phone, "", true, false, false);
+                        databaseReference.child("users").child("data").setValue(data);*/
 
+                                DatabaseReference path =  databaseReference.child("users").child(mUser.getUid())
+                                        .child("Contacts");
+
+                                path.child("contactName").setValue(contactName);
+                                path.child("contactEmail").setValue(contactEmail);
+                                path.child("contactPhone").setValue(contactPhone);
+
+                                Toast.makeText(ContactActivity.this, "Created contact successfully", Toast.LENGTH_SHORT).show();
+                                finish();
+                                sendUserToNextActivity(mUser.getUid());
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
         });
@@ -98,7 +129,7 @@ public class ContactActivity extends AppCompatActivity {
 
     private void sendUserToNextActivity(String userId) {
         Intent intent = new Intent(this, ContactListActivity.class);
-        intent.putExtra("userId",userId);
+        intent.putExtra("uid",userId);
         startActivity(intent);
     }
 }

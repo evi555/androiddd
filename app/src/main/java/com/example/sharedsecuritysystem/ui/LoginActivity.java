@@ -1,6 +1,5 @@
 package com.example.sharedsecuritysystem.ui;
 
-import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
@@ -15,9 +14,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://security-system-58cb7-default-rtdb.firebaseio.com/");
 
     ActivityLoginBinding loginbinding;
     private FirebaseFirestore db;
@@ -37,15 +40,19 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-
-        if (mUser != null) {
-            // User is signed in
+        //Log.e("user id ","mUser  : "+mUser.getUid());
+        if (getIntent().hasExtra("uid")){
+            String userId =  getIntent().getStringExtra("uid");
+           // Log.e("LoginActivity","uid"+ userId);
             Intent i = new Intent(LoginActivity.this, HomeActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("uid", userId);
             startActivity(i);
-        } else {
-            // User is signed out
-            Log.d(TAG, "onAuthStateChanged:signed_out");
+        } else if ( mUser != null){
+            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("uid", mUser.getUid());
+            startActivity(i);
         }
 
         loginbinding.txtUser.setOnClickListener(new View.OnClickListener() {
@@ -59,45 +66,85 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 perForLogin();
+                String email = loginbinding.edtTxtEmail.getText().toString().trim();
+                String password = loginbinding.edtTxtPswrd.getText().toString().trim();
+
+                if (!email.matches(emailPattern)) {
+                    loginbinding.edtTxtEmail.setError("Please enter registered Email ID");
+                } else if (password.isEmpty() || password.length() < 6) {
+                    loginbinding.edtTxtPswrd.setError("Please enter correct password");
+                } else {
+                    progressDialog.setMessage("Please wait while Login...");
+                    progressDialog.setTitle("Login");
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+
+                    /*databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.hasChild(email.replace(".", ","))){
+                                final String getPassword = snapshot.child(email.replace(".", ",")).child("password").getValue(String.class);
+                                if (getPassword.equals(password)){
+                                    Toast.makeText(LoginActivity.this, "login successful", Toast.LENGTH_SHORT).show();
+                                    sendUserToNextActivity();
+                                }else{
+                                    Toast.makeText(LoginActivity.this, "wrong password", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });*/
+                }
+            }
+
+
+
+            private void perForLogin() {
+                String email = loginbinding.edtTxtEmail.getText().toString().trim();
+                String password = loginbinding.edtTxtPswrd.getText().toString().trim();
+
+                if (!email.matches(emailPattern)) {
+                    loginbinding.edtTxtEmail.setError("Please enter registered Email ID");
+                } else if (password.isEmpty() || password.length() < 6) {
+                    loginbinding.edtTxtPswrd.setError("Please enter correct password");
+                } else {
+                    progressDialog.setMessage("Please wait while Login...");
+                    progressDialog.setTitle("Login");
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                progressDialog.dismiss();
+                                mUser = task.getResult().getUser();
+                                sendUserToNextActivity();
+                                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(LoginActivity.this, "Email id or password is incorrect", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+
+            private void sendUserToNextActivity() {
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                Log.e("uid", mUser.getUid());
+                intent.putExtra("uid", mUser.getUid());
+                startActivity(intent);
             }
         });
     }
 
-    private void perForLogin() {
-        String email = loginbinding.edtTxtEmail.getText().toString().trim();
-        String password = loginbinding.edtTxtPswrd.getText().toString().trim();
-
-        if (!email.matches(emailPattern)) {
-            loginbinding.edtTxtEmail.setError("Please enter registered Email ID");
-        } else if (password.isEmpty() || password.length() < 6) {
-            loginbinding.edtTxtPswrd.setError("Please enter correct password");
-        } else {
-            progressDialog.setMessage("Please wait while Login...");
-            progressDialog.setTitle("Login");
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
-
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        progressDialog.dismiss();
-                        mUser = task.getResult().getUser();
-                        sendUserToNextActivity();
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Email id or password is incorrect" , Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-    }
-
-    private void sendUserToNextActivity() {
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        Log.e("getUid", mUser.getUid());
-        intent.putExtra("userId",mUser.getUid());
+    /*private void sendUserToNextActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
