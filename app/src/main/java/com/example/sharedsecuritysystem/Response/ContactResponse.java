@@ -4,15 +4,16 @@ import java.io.Serializable;
 
 public class ContactResponse implements Serializable {
     private String name;
-    private String email;
+    private String contactEmail;
     private String phone;
     private String uid;
-    public ContactResponse(String name, String email, String phone,String uid) {
+
+    /*public ContactResponse(String name, String email, String phone,String uid) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.uid = uid;
-    }
+    }*/
 
     public String getName() {
         return name;
@@ -23,11 +24,11 @@ public class ContactResponse implements Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return contactEmail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.contactEmail = email;
     }
 
     public String getPhone() {

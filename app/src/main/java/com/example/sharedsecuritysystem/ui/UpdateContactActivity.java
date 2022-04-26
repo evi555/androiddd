@@ -8,16 +8,27 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.sharedsecuritysystem.Response.ContactModel;
 import com.example.sharedsecuritysystem.Response.ContactResponse;
 import com.example.sharedsecuritysystem.databinding.ActivityUpdateContactBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
+import java.util.UUID;
 
 public class UpdateContactActivity extends AppCompatActivity {
     ActivityUpdateContactBinding binding;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://security-system-58cb7-default-rtdb.firebaseio.com/");
 
     String userId;
     ProgressDialog progressDialog;
@@ -25,7 +36,7 @@ public class UpdateContactActivity extends AppCompatActivity {
 
     private String contactEmail, contactName, contactPhone;
     private FirebaseFirestore db;
-    ContactResponse contact;
+    ContactModel contact;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
@@ -35,7 +46,7 @@ public class UpdateContactActivity extends AppCompatActivity {
         binding = ActivityUpdateContactBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        contact = (ContactResponse) getIntent().getSerializableExtra("Contacts");
+        contact = (ContactModel) getIntent().getSerializableExtra("Contacts");
 
         userId = getIntent().getStringExtra("userId");
         db = FirebaseFirestore.getInstance();
@@ -43,9 +54,9 @@ public class UpdateContactActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
 
-        binding.editTextUpdateName.setText(contact.getName());
-        binding.editTextUpdateEmail.setText(contact.getEmail());
-        binding.editTextUpdatePhone.setText(contact.getPhone());
+        binding.editTextUpdateName.setText(contact.getContactName());
+        binding.editTextUpdateEmail.setText(contact.getContactEmail());
+        binding.editTextUpdatePhone.setText(contact.getContactPhone());
 
         binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,25 +85,31 @@ public class UpdateContactActivity extends AppCompatActivity {
     }
 
     private void updatedata(String contactName, String contactEmail, String contactPhone) {
-        Contact updatedContact=new Contact(contactName, contactEmail, contactPhone);
+        DatabaseReference path =  databaseReference.child("users").child(mUser.getUid())
+                .child("Contacts").child(contact.getContactId());
 
-        db.collection("Users").document(mUser.getUid()).collection("Contacts").document(contact.getUid()).set(updatedContact).addOnSuccessListener(new OnSuccessListener<Void>() {
+        databaseReference.child("users").child(mUser.getUid()).child("Contacts").child(contact.getContactId()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(UpdateContactActivity.this, "Contact have been updated..", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    progressDialog.dismiss();
+                    path.child("contactName").setValue(contactName);
+                    path.child("contactEmail").setValue(contactEmail);
+                    path.child("contactPhone").setValue(contactPhone);
+
+                    // TODO
                 sendUserToNextActivity();
             }
-        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(UpdateContactActivity.this, "Fail to update the data..", Toast.LENGTH_SHORT).show();
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
 
     private void sendUserToNextActivity() {
         Intent intent = new Intent(this, ContactListActivity.class);
+        intent.putExtra("uid", userId);
         startActivity(intent);
+        //finishAffinity();
     }
 }

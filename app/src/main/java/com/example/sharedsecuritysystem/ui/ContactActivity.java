@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class ContactActivity extends AppCompatActivity {
     ActivityContactBinding contactBinding;
@@ -84,19 +85,21 @@ public class ContactActivity extends AppCompatActivity {
                                 phone, "", true, false, false);
                         databaseReference.child("users").child("data").setValue(data);*/
 
+                                String uuid = UUID.randomUUID().toString();
+
                                 DatabaseReference path =  databaseReference.child("users").child(mUser.getUid())
-                                        .child("Contacts");
+                                        .child("Contacts").child(uuid);
 
                                 path.child("contactName").setValue(contactName);
                                 path.child("contactEmail").setValue(contactEmail);
                                 path.child("contactPhone").setValue(contactPhone);
+                                path.child("contactId").setValue(uuid);
 
                                 Toast.makeText(ContactActivity.this, "Created contact successfully", Toast.LENGTH_SHORT).show();
                                 finish();
                                 sendUserToNextActivity(mUser.getUid());
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 

@@ -1,43 +1,52 @@
 package com.example.sharedsecuritysystem.Adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharedsecuritysystem.R;
+import com.example.sharedsecuritysystem.Response.ContactModel;
 import com.example.sharedsecuritysystem.ui.UpdateContactActivity;
 import com.example.sharedsecuritysystem.Response.ContactResponse;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
-    ArrayList<ContactResponse> list;
+    ArrayList<ContactModel> list;
     Context context;
     String userId;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://security-system-58cb7-default-rtdb.firebaseio.com/");
 
-    public ContactAdapter(ArrayList<ContactResponse> list, Context context, String userId) {
+    public ContactAdapter(ArrayList<ContactModel> list, Context context) {
         this.context=context;
         this.list = list;
-        this.userId=userId;
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
     }
+
+
 
     @NonNull
     @Override
@@ -48,34 +57,37 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-                ContactResponse contact = list.get(position);
-                holder.textViewName.setText(list.get(position).getName());
-                holder.textViewPhone.setText(list.get(position).getPhone());
-                holder.textViewEmail.setText(list.get(position).getEmail());
+                ContactModel contact = list.get(position);
+
+        Log.e("Clicked item","Selected Item : "+contact.getContactEmail());
+
+                holder.textViewName.setText(contact.getContactName());
+                holder.textViewPhone.setText(contact.getContactPhone());
+                holder.textViewEmail.setText(contact.getContactEmail());
 
 
-                if(position % 2 ==0) {
+                /*if(position % 2 ==0) {
                     holder.relativelayout.getBackground().setTint(context.getResources().getColor(R.color.orange));
                     holder.imageView.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
                 }else {
                     holder.relativelayout.getBackground().setTint(context.getResources().getColor(R.color.white));
                     holder.imageView.setColorFilter(ContextCompat.getColor(context, R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
-                   }
+                }*/
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ContactResponse contact = list.get(holder.getAdapterPosition());
-                        Intent intent = new Intent(context, UpdateContactActivity.class);
+                        ContactModel contact = list.get(holder.getAdapterPosition());
+                        Intent intent = new Intent(view.getContext(), UpdateContactActivity.class);
                         intent.putExtra("Contacts", contact);
-                        intent.putExtra("userId", userId);
-                        context.startActivity(intent);
+                        intent.putExtra("uid", userId);
+                        view.getContext().startActivity(intent);
                     }
                 });
 
             holder.itemView.findViewById(R.id.imageViewContactListDelete).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FirebaseFirestore.getInstance().collection("Users").document(mUser.getUid()).
+                /*FirebaseFirestore.getInstance().collection("Users").document(mUser.getUid()).
                         collection("Contacts").
                         document(contact.getUid()).delete().
                         addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -91,7 +103,23 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                                 }
 
                             }
-                        });
+                        });*/
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                Query applesQuery = ref.child("Contacts").orderByChild("title").equalTo("Apple");
+
+                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                            appleSnapshot.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "onCancelled", databaseError.toException());
+                    }
+                });
             }
             });
     }
