@@ -15,12 +15,12 @@
         android:padding="10dp"
         android:background="@drawable/layout_shape">
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imageViewHistoryItem"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY" />-->
 
         <TextView
             android:id="@+id/textViewHistoryAlert"
@@ -28,11 +28,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/imageViewHistoryItem"
             android:padding="2dp"
             android:text="Alert:"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView
@@ -51,7 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewHistoryNote"
-
             android:layout_alignParentEnd="true"
             android:padding="2dp"
             android:text="Time:"
@@ -64,7 +62,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewHistoryAlert"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/imageViewHistoryItem"
             android:padding="2dp"
             android:text="Note:"
             android:textColor="@color/black"

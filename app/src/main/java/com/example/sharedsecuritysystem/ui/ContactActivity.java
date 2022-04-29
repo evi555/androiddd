@@ -4,17 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.sharedsecuritysystem.databinding.ActivityContactBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.sharedsecuritysystem.utils.Utils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,13 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class ContactActivity extends AppCompatActivity {
@@ -46,8 +35,7 @@ public class ContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         contactBinding=ActivityContactBinding.inflate(getLayoutInflater());
         setContentView(contactBinding.getRoot());
-
-        String userId = getIntent().getStringExtra("uid");
+        String userId = getIntent().getStringExtra(Utils.userId);
         db = FirebaseFirestore.getInstance();
         progressDialog= new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
@@ -72,8 +60,6 @@ public class ContactActivity extends AppCompatActivity {
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
-                    //addDataToFireStore(contactName, contactEmail, contactPhone);
-                    //finishAffinity();
                     databaseReference.child("users").child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -81,9 +67,6 @@ public class ContactActivity extends AppCompatActivity {
                                 Toast.makeText(ContactActivity.this, "", Toast.LENGTH_SHORT).show();
                             } else {
                                 progressDialog.dismiss();
-                        /*RegistrationData data = new RegistrationData(name, email,
-                                phone, "", true, false, false);
-                        databaseReference.child("users").child("data").setValue(data);*/
 
                                 String uuid = UUID.randomUUID().toString();
 
@@ -106,26 +89,6 @@ public class ContactActivity extends AppCompatActivity {
                         }
                     });
                 }
-            }
-        });
-    }
-
-    private void addDataToFireStore(String contactName, String contactEmail, String contactPhone) {
-        CollectionReference dbContacts = db.collection("Users").document(mUser.getUid()).collection("Contacts");
-        Contact contacts = new Contact(contactName, contactEmail, contactPhone);
-        dbContacts.add(contacts).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                progressDialog.dismiss();
-                Toast.makeText(ContactActivity.this, "Your contact have been created", Toast.LENGTH_SHORT).show();
-                //finishAffinity();
-                //Log.e("7h7yn8i", userId);
-                sendUserToNextActivity(mUser.getUid());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ContactActivity.this, "Fail to create contact", Toast.LENGTH_SHORT).show();
             }
         });
     }

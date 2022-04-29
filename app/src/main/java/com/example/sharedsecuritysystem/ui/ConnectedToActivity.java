@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.example.sharedsecuritysystem.Adapter.SystemConnectedAdapter;
 import com.example.sharedsecuritysystem.R;
 import com.example.sharedsecuritysystem.Response.SystemConnectedResponse;
-
 import java.util.ArrayList;
 
 public class ConnectedToActivity extends AppCompatActivity {
@@ -21,7 +20,7 @@ public class ConnectedToActivity extends AppCompatActivity {
         setContentView(R.layout.activity_connected_to);
 
         list = new ArrayList<SystemConnectedResponse>();
-        list.add(new SystemConnectedResponse("Yash Pal", "yash@gmail.com", "901014745"));
+       /* list.add(new SystemConnectedResponse("Yash Pal", "yash@gmail.com", "901014745"));
         list.add(new SystemConnectedResponse("Aniket", "anku@gmail.com", "901014741"));
         list.add(new SystemConnectedResponse("Biku", "vivek@gmail.com", "98014745"));
         list.add(new SystemConnectedResponse("Ram", "ram@gmail.com", "941014745"));
@@ -32,7 +31,7 @@ public class ConnectedToActivity extends AppCompatActivity {
         list.add(new SystemConnectedResponse("Manoj", "manoj@gmail.com", "9988455661"));
         list.add(new SystemConnectedResponse("Ishu", "ishu@gmail.com", "8219475641"));
         list.add(new SystemConnectedResponse("Biku", "biku@gmail.com", "7877041562"));
-        list.add(new SystemConnectedResponse("Suresh", "suresh@gmail.com", "8728044760"));
+        list.add(new SystemConnectedResponse("Suresh", "suresh@gmail.com", "8728044760"));*/
         recyclerView = findViewById(R.id.recyclerSystemConnected);
         systemConnectedAdapter = new SystemConnectedAdapter(list,this);
         recyclerView.setAdapter(systemConnectedAdapter);

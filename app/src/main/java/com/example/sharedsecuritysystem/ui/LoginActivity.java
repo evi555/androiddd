@@ -9,18 +9,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.example.sharedsecuritysystem.databinding.ActivityLoginBinding;
+import com.example.sharedsecuritysystem.utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
-
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://security-system-58cb7-default-rtdb.firebaseio.com/");
 
     ActivityLoginBinding loginbinding;
     private FirebaseFirestore db;
@@ -42,16 +39,16 @@ public class LoginActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         //Log.e("user id ","mUser  : "+mUser.getUid());
         if (getIntent().hasExtra("uid")){
-            String userId =  getIntent().getStringExtra("uid");
+            String userId =  getIntent().getStringExtra(Utils.userId);
            // Log.e("LoginActivity","uid"+ userId);
             Intent i = new Intent(LoginActivity.this, HomeActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            i.putExtra("uid", userId);
+            i.putExtra(Utils.userId, userId);
             startActivity(i);
         } else if ( mUser != null){
             Intent i = new Intent(LoginActivity.this, HomeActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            i.putExtra("uid", mUser.getUid());
+            i.putExtra(Utils.userId, mUser.getUid());
             startActivity(i);
         }
 
@@ -78,30 +75,8 @@ public class LoginActivity extends AppCompatActivity {
                     progressDialog.setTitle("Login");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
-
-                    /*databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.hasChild(email.replace(".", ","))){
-                                final String getPassword = snapshot.child(email.replace(".", ",")).child("password").getValue(String.class);
-                                if (getPassword.equals(password)){
-                                    Toast.makeText(LoginActivity.this, "login successful", Toast.LENGTH_SHORT).show();
-                                    sendUserToNextActivity();
-                                }else{
-                                    Toast.makeText(LoginActivity.this, "wrong password", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });*/
                 }
             }
-
-
 
             private void perForLogin() {
                 String email = loginbinding.edtTxtEmail.getText().toString().trim();
@@ -142,9 +117,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*private void sendUserToNextActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-    }*/
 }

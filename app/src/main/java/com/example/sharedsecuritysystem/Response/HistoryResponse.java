@@ -3,17 +3,14 @@ package com.example.sharedsecuritysystem.Response;
 public class HistoryResponse {
 
     private int image;
-    private String alert;
+    private String message;
     private String Date;
     private String Time;
     private String Note;
+    private String data;
 
-    public HistoryResponse(int image, String alert, String date, String time, String note) {
-        this.image = image;
-        this.alert = alert;
-        Date = date;
-        Time = time;
-        Note = note;
+    public HistoryResponse() {
+
     }
 
     public int getImage() {
@@ -25,11 +22,11 @@ public class HistoryResponse {
     }
 
     public String getAlert() {
-        return alert;
+        return message;
     }
 
     public void setAlert(String alert) {
-        this.alert = alert;
+        this.message = alert;
     }
 
     public String getDate() {
@@ -54,5 +51,13 @@ public class HistoryResponse {
 
     public void setNote(String note) {
         Note = note;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

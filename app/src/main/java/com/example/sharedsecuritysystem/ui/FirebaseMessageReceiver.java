@@ -1,11 +1,14 @@
 package com.example.sharedsecuritysystem.ui;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-
+import android.os.Build;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import com.example.sharedsecuritysystem.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -16,22 +19,22 @@ import com.google.firebase.messaging.RemoteMessage;
         public void onMessageReceived(@NonNull RemoteMessage remoteMessage)
         {
         super.onMessageReceived(remoteMessage);
-        getFirebaseMessage(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
-        }
-
-        public void getFirebaseMessage(String title, String msg){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "myFirebaseChannel")
-                .setSmallIcon(R.drawable.user1)
-                .setContentTitle(title)
-                .setContentText(msg)
-                .setAutoCancel(true);
-
-            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
-            managerCompat.notify(101, builder.build());
-
-            Intent intent = new Intent(this, TestActivity.class);
+            Log.e("onMessageReceived", "onMessageReceived");
+            Intent intent = new Intent(this, HistoryActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                    PendingIntent.FLAG_ONE_SHOT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+            String channelId = "Default";
+            NotificationCompat.Builder builder = new  NotificationCompat.Builder(this, channelId)
+                    .setSmallIcon(R.mipmap.ic_launcher).setPriority(Notification.PRIORITY_MAX)
+                .setContentTitle(remoteMessage.getNotification().getTitle())
+                    .setContentText(remoteMessage.getNotification().getBody()).
+                            setAutoCancel(true).setContentIntent(pendingIntent);;
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel(channelId, "Default channel",
+                        NotificationManager.IMPORTANCE_HIGH);
+                manager.createNotificationChannel(channel);
+            }
+            manager.notify(0, builder.build());
         }
     }

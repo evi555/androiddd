@@ -3,16 +3,14 @@ package com.example.sharedsecuritysystem.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import com.example.sharedsecuritysystem.Adapter.ContactAdapter;
 import com.example.sharedsecuritysystem.R;
 import com.example.sharedsecuritysystem.Response.ContactModel;
-import com.example.sharedsecuritysystem.Response.ContactResponse;
+import com.example.sharedsecuritysystem.utils.Utils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +25,6 @@ public class ContactListActivity extends AppCompatActivity {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://security-system-58cb7-default-rtdb.firebaseio.com/");
 
-    Context context;
     RecyclerView recyclerView;
     ContactAdapter contactAdapter;
     ArrayList<ContactModel> list;
@@ -43,7 +40,6 @@ public class ContactListActivity extends AppCompatActivity {
         userId =  getIntent().getStringExtra("uid");
         Log.e("uid", "check user id" + userId);
 
-
         recyclerView = findViewById(R.id.recyclerContactList);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -58,7 +54,6 @@ public class ContactListActivity extends AppCompatActivity {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 Log.e("list", "contactList" + snapshot);
                 list.clear();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
@@ -68,8 +63,9 @@ public class ContactListActivity extends AppCompatActivity {
                     list.add(contactModel);
                     Log.e("list", "contactList list ..." + list.size());
                 }
-                Log.e("Data ","Data : "+list.size()+"   "+list.get(0).getContactEmail());
-                contactAdapter = new ContactAdapter((ArrayList<ContactModel>) list, context);
+               // Log.e("Data ","Data : "+list.size()+"   "+list.get(0).getContactEmail());
+                contactAdapter = new ContactAdapter((ArrayList<ContactModel>) list,
+                        ContactListActivity.this, userId);
                 recyclerView.setAdapter(contactAdapter);
                 contactAdapter.notifyDataSetChanged();
             }
@@ -81,10 +77,9 @@ public class ContactListActivity extends AppCompatActivity {
         });
     }
 
-
     public void onBackPressed() {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("uid", userId);
+        intent.putExtra(Utils.userId, userId);
         startActivity(intent);
         finishAffinity();
 

@@ -23,4 +23,5 @@
     <string name="contact_mail">Contact mail</string>
     <string name="phone_number">Phone number</string>
     <string name="create_contact">Create contact</string>
+    <string name="default_notification_channel_id">ChannelId</string>
 </resources>

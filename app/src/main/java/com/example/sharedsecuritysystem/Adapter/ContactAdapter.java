@@ -3,6 +3,7 @@ package com.example.sharedsecuritysystem.Adapter;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharedsecuritysystem.R;
 import com.example.sharedsecuritysystem.Response.ContactModel;
+import com.example.sharedsecuritysystem.ui.ContactListActivity;
 import com.example.sharedsecuritysystem.ui.UpdateContactActivity;
 import com.example.sharedsecuritysystem.Response.ContactResponse;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,16 +36,17 @@ import java.util.ArrayList;
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
     ArrayList<ContactModel> list;
     Context context;
-    String userId;
+    String userId ;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://security-system-58cb7-default-rtdb.firebaseio.com/");
 
-    public ContactAdapter(ArrayList<ContactModel> list, Context context) {
+    public ContactAdapter(ArrayList<ContactModel> list, ContactListActivity context, String userId) {
         this.context=context;
         this.list = list;
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        this.userId = userId;
     }
 
 
@@ -59,6 +62,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
                 ContactModel contact = list.get(position);
 
+
         Log.e("Clicked item","Selected Item : "+contact.getContactEmail());
 
                 holder.textViewName.setText(contact.getContactName());
@@ -66,13 +70,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                 holder.textViewEmail.setText(contact.getContactEmail());
 
 
-                /*if(position % 2 ==0) {
+                if(position % 2 ==0) {
                     holder.relativelayout.getBackground().setTint(context.getResources().getColor(R.color.orange));
                     holder.imageView.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
                 }else {
                     holder.relativelayout.getBackground().setTint(context.getResources().getColor(R.color.white));
                     holder.imageView.setColorFilter(ContextCompat.getColor(context, R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
-                }*/
+                }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -80,13 +84,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                         ContactModel contact = list.get(holder.getAdapterPosition());
                         Intent intent = new Intent(view.getContext(), UpdateContactActivity.class);
                         intent.putExtra("Contacts", contact);
-                        intent.putExtra("uid", userId);
+                        intent.putExtra("uid", userId );
                         view.getContext().startActivity(intent);
                     }
                 });
 
             holder.itemView.findViewById(R.id.imageViewContactListDelete).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                databaseReference.child("users").child(mUser.getUid()).child("Contacts").child(contact.getContactId()).removeValue();
+
+
                 /*FirebaseFirestore.getInstance().collection("Users").document(mUser.getUid()).
                         collection("Contacts").
                         document(contact.getUid()).delete().
@@ -104,22 +111,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
                             }
                         });*/
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                Query applesQuery = ref.child("Contacts").orderByChild("title").equalTo("Apple");
-
-                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-                            appleSnapshot.getRef().removeValue();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.e(TAG, "onCancelled", databaseError.toException());
-                    }
-                });
             }
             });
     }

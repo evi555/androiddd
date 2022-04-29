@@ -6,20 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.sharedsecuritysystem.R;
-import com.example.sharedsecuritysystem.Response.HistoryResponse;
-
 import java.util.ArrayList;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
-    ArrayList<HistoryResponse> list;
+    ArrayList<HistoryModel> list;
     Context context;
 
-    public HistoryAdapter(ArrayList<HistoryResponse> list, Context context) {
+    public HistoryAdapter(ArrayList<HistoryModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -33,11 +29,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageResource(list.get(position).getImage());
-        holder.textViewAlert.setText(list.get(position).getAlert());
-        holder.textViewDate.setText(list.get(position).getDate());
-        holder.textViewTime.setText(list.get(position).getTime());
-        holder.textViewNote.setText(list.get(position).getNote());
+
+        HistoryModel historyModel = list.get(position);
+       // holder.imageView.setImageResource(historyModel.ge);
+        holder.textViewAlert.setText(historyModel.getTitle());
+        holder.textViewNote.setText(historyModel.getMessage());
+
+        //  holder.textViewDate.setText(list.get(position).getDate());
+       // holder.textViewTime.setText(list.get(position).getTime());
 
     }
 
@@ -52,7 +51,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageViewHistoryItem);
+            //imageView = itemView.findViewById(R.id.imageViewHistoryItem);
             textViewAlert = itemView.findViewById(R.id.textViewHistoryAlert);
             textViewDate = itemView.findViewById(R.id.textViewHistoryDate);
             textViewTime = itemView.findViewById(R.id.textViewHistoryTime);

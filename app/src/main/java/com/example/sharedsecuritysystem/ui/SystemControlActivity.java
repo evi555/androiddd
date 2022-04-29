@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 import com.example.sharedsecuritysystem.databinding.ActivitySystemControlBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +19,6 @@ public class SystemControlActivity extends AppCompatActivity {
     FirebaseUser mUser;
     private FirebaseFirestore db;
     String status="false";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +36,11 @@ public class SystemControlActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                 if(isChecked){
-                    status="true"; //edit here
+                    status="true";
                     Toast.makeText(SystemControlActivity.this, "button is on", Toast.LENGTH_SHORT).show();
 
                 }else{
-                    status="false"; //edit here
+                    status="false";
                     Toast.makeText(SystemControlActivity.this, "button is off", Toast.LENGTH_SHORT).show();
                 }
                     updateData(status);
@@ -52,11 +50,5 @@ public class SystemControlActivity extends AppCompatActivity {
 
     private void updateData(String state){
         databaseReference.child("users").child(mUser.getUid()).child("sysControl").setValue(status);
-       /* db.collection("Users").document(mUser.getUid()).update("sysControl",status).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(SystemControlActivity.this, "data updated", Toast.LENGTH_SHORT).show();
-            }
-        });*/
     }
 }
