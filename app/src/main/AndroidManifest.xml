@@ -1,68 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.sharedsecuritysystem">
+    package="com.io.sharedsecuritysystem">
     <!-- Permissions for internet -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SharedSecuritySystem">
         <activity
-            android:name=".ui.SystemControlActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.HistoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.TestActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.ConnectedToActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.UpdateContactActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.ContactListActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.HomeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.ContactActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.RegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.LoginActivity"
-            android:exported="true">
+            android:name="com.io.sharedsecuritysystem.ui.SplashActivity"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.SystemControlActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.TestActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.ConnectedToActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.UpdateContactActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.ContactListActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.ContactActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.io.sharedsecuritysystem.ui.LoginActivity"
+            android:exported="true">
+
         </activity>
 
-        <service android:name=".ui.FirebaseMessageReceiver"
+        <service
+            android:name="com.io.sharedsecuritysystem.ui.FirebaseMessageReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name="com.io.sharedsecuritysystem.MyFirebaseMessagingService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

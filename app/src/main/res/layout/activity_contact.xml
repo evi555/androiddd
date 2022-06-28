@@ -8,6 +8,10 @@
     tools:context=".ui.ContactActivity"
     android:gravity="center_horizontal">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -94,5 +98,6 @@
 
         </RelativeLayout>
     </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

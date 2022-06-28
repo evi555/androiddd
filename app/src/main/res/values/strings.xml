@@ -24,4 +24,5 @@
     <string name="phone_number">Phone number</string>
     <string name="create_contact">Create contact</string>
     <string name="default_notification_channel_id">ChannelId</string>
+    <string name="server_key">AAAAHVzeA1k:APA91bFHff2gKVgZXOKKeyuRHUAmeTZI7ZC4bY_BfA1kI7_2z7f266TKWH4jknZy9wkoOsE85Y2dtw4Bka_4-B0mkqNLqWs8srD1EL2NXI8TmtLCZaK7QimX-oV3jQaYSjHR987CcqUf</string>
 </resources>

@@ -34,7 +34,7 @@
             android:textSize="15dp"
             android:textStyle="bold" />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/textViewHistoryDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:padding="2dp"
             android:text="Date:"
             android:textColor="@color/black"
-            android:textSize="11sp" />
+            android:textSize="11sp" />-->
 
         <TextView
             android:id="@+id/textViewHistoryTime"

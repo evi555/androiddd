@@ -1,18 +1,27 @@
 {
   "project_info": {
     "project_number": "126112105305",
+    "firebase_url": "https://security-system-58cb7-default-rtdb.firebaseio.com",
     "project_id": "security-system-58cb7",
     "storage_bucket": "security-system-58cb7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:126112105305:android:15e332841cf78bd3b8c248",
+        "mobilesdk_app_id": "1:126112105305:android:a61d2dea0f71033ab8c248",
         "android_client_info": {
-          "package_name": "com.example.sharedsecuritysystem"
+          "package_name": "com.io.sharedsecuritysystem"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "126112105305-ll0djlrj3r61tft1mqe2c82cfbqsp2oe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.io.sharedsecuritysystem",
+            "certificate_hash": "0d2fe8096e0128b6eb68935b522ecad87c859c63"
+          }
+        },
         {
           "client_id": "126112105305-jrp5bf4s7m957ttob7r4c6srtlvl6age.apps.googleusercontent.com",
           "client_type": 3
